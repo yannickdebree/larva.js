@@ -1,1 +1,1 @@
-snake("#snake-app").render();
+snake('#snake-app').render();

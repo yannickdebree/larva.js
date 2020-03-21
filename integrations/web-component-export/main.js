@@ -1,0 +1,1 @@
+createComponent('button').setTemplate('<button>Hello world</button>').useAsWebComponent();

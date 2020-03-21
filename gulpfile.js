@@ -3,14 +3,14 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var tsify = require('tsify');
-var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 var fancy_log = require('fancy-log');
 var buffer = require('vinyl-buffer');
 
 var watchedBrowserify = watchify(browserify({
     basedir: '.',
     debug: true,
-    entries: ['packages/core/main.ts'],
+    entries: ['packages/core/index.ts'],
     cache: {},
     packageCache: {},
 }).plugin(tsify));
@@ -21,8 +21,8 @@ function coreBundle() {
         .pipe(source('core.js'))
         .on('error', fancy_log)
         .pipe(buffer())
-        .pipe(uglify())
-        .pipe(gulp.dest('integrations/build'));
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(gulp.dest('integrations/dist'));
 }
 
 gulp.task('build:core:watch', coreBundle);

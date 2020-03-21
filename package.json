@@ -1,10 +1,12 @@
 {
-  "name": "@snake.js/srcs",
+  "name": "@worm.js/srcs",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "concurrently \"npm run start:integrations\" \"npm run build:watch\"",
     "start:integrations": "http-server integrations",
-    "build:watch": "gulp build:core:watch"
+    "build:watch": "gulp build:core:watch",
+    "lint": "prettier --write \"**/*.ts\""
   },
   "devDependencies": {
     "browserify": "^16.5.0",
@@ -19,6 +21,7 @@
     "typescript": "^3.8.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.1"
+    "watchify": "^3.11.1",
+    "prettier": "^1.19.1"
   }
 }
