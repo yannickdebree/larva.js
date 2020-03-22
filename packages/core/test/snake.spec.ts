@@ -1,13 +1,29 @@
-// import { snake } from 'core/src/snake';
+import { equal, notEqual } from 'assert';
+import { snake } from '../src/snake';
+const Window = require('window');
 
-// describe('test', () => {
-//   const app1 = snake('#snake-app-1');
+context('@snake.js/core', function() {
+  beforeEach(function() {
+    globalThis.window = new Window();
 
-//   const app1Reference = app1.render();
+    for (let i = 0; i < 3; ++i) {
+      const appContainer = window.document.createElement('div');
 
-//   console.log(app1 === app1Reference);
+      appContainer.id = `snake-app-${i}`;
 
-//   const app2 = snake('#snake-app-2');
+      window.document.body.appendChild(appContainer);
+    }
+  });
 
-//   console.log(app1 === app2);
-// });
+  it('Each snake instance is unique', function() {
+    const app1 = snake('#snake-app-1');
+
+    const app1Reference = app1.setTemplate('<h1>Hello world</h1>');
+
+    equal(app1, app1Reference);
+
+    const app2 = snake('#snake-app-2');
+
+    notEqual(app1, app2);
+  });
+});

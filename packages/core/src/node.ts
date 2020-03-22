@@ -52,7 +52,6 @@ export function createNode(_properties: NodePropertiesInput, _data?: NodeData): 
       const injectable = properties.injectables[injectableId];
 
       if (!injectable) {
-        // return {};
         throwNewError(`"${injectableId}" is not declared as injectable in the "${properties.tag}" node.`);
       }
 
@@ -66,7 +65,7 @@ export function createNode(_properties: NodePropertiesInput, _data?: NodeData): 
     });
   }
 
-  const computeData = function() {
+  function computeData() {
     if (_data) {
       const injectablesIds: Array<InjectableId> = getArgumentsNamesOfFunction(_data);
 
@@ -80,7 +79,7 @@ export function createNode(_properties: NodePropertiesInput, _data?: NodeData): 
     } else {
       return {};
     }
-  };
+  }
 
   let data: any;
 
@@ -126,7 +125,7 @@ export function createNode(_properties: NodePropertiesInput, _data?: NodeData): 
 
     render(): Node {
       if (!properties.domElement) {
-        properties.domElement = window.document.querySelector(`[s-tag=${properties.tag}]`);
+        properties.domElement = window.document.querySelector(`[s-name=${properties.tag}]`);
       }
 
       if (!properties.domElement) {
@@ -163,7 +162,7 @@ export function createNode(_properties: NodePropertiesInput, _data?: NodeData): 
 
       properties.childComponents.forEach(function(component: Component): void {
         properties.domElement.querySelectorAll(`s-${component.getTag()}`).forEach((element: Element) => {
-          element.outerHTML = `<div s-tag="${component.getTag()}">${component.getTemplate()}</div>`;
+          element.outerHTML = `<div s-name="${component.getTag()}">${component.getTemplate()}</div>`;
 
           component.render();
         });

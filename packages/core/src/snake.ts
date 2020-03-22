@@ -1,7 +1,13 @@
 import { throwNewError } from './errors';
 import { createNode, Node, NodeData, NodePropertiesInput } from './node';
 
-interface SnakeInstance extends Node {}
+export type SnakeOptionsInput = () => SnakeOptions;
+
+export interface SnakeOptions {
+  disabledWarning: boolean;
+}
+
+export interface SnakeInstance extends Node {}
 
 export function snake(selector: string, data?: NodeData): SnakeInstance {
   if (!window) {

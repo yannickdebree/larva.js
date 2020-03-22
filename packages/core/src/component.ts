@@ -25,7 +25,6 @@ export function createComponent(tag: string, data?: NodeData): Component {
         class extends HTMLElement {
           constructor() {
             super();
-            // TODO : Implements Web components use
             this.innerHTML = 'Feature in progress.';
           }
         }

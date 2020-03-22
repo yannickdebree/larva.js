@@ -1,14 +1,19 @@
 {
+  "license": "MIT",
+  "version": "1.0.0",
   "name": "@snake.js/srcs",
   "private": true,
-  "license": "MIT",
   "scripts": {
+    "build:watch": "gulp build:core:watch",
+    "lint": "prettier --write \"**/*.ts\"",
     "start": "concurrently \"npm run start:integrations\" \"npm run build:watch\"",
     "start:integrations": "http-server integrations",
-    "build:watch": "gulp build:core:watch",
-    "lint": "prettier --write \"**/*.ts\""
+    "test": "mocha -r ts-node/register packages/**/*.spec.ts"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.3",
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
     "concurrently": "^5.1.0",
@@ -26,6 +31,7 @@
     "typescript": "^3.8.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.1"
+    "watchify": "^3.11.1",
+    "window": "^4.2.7"
   }
 }

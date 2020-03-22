@@ -1,2 +1,8 @@
-node_modules
+# Build
 integrations/dist/**
+
+# Dependencies
+node_modules
+
+# IDE
+.vscode
