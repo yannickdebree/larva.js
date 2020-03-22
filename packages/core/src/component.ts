@@ -1,33 +1,32 @@
-import { createNode, Node } from './node';
-import { Data } from './shared';
+import { createNode, Node, NodeData, NodePropertiesInput } from './node';
 
 export interface Component extends Node {
-  getId(): string;
+  getTag(): string;
   useAsWebComponent(): void;
 }
 
-export function createComponent(id: string, data?: (...dependencies: Array<any>) => Data): Component {
-  const properties = {
+export function createComponent(tag: string, data?: NodeData): Component {
+  const properties: NodePropertiesInput = {
     domElement: undefined,
-    id,
+    tag,
     template: ''
   };
 
   return {
     ...createNode(properties, data),
 
-    getId(): string {
-      return properties.id;
+    getTag(): string {
+      return properties.tag;
     },
 
     useAsWebComponent(): void {
       window.customElements.define(
-        `s-${properties.id}`,
+        `s-${properties.tag}`,
         class extends HTMLElement {
           constructor() {
             super();
             // TODO : Implements Web components use
-            this.innerHTML = 'Web components use in progress...';
+            this.innerHTML = 'Feature in progress.';
           }
         }
       );

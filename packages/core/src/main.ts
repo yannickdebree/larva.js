@@ -1,6 +1,6 @@
 import { createComponent } from './component';
-import { snake } from './snake';
 import { createInjectable } from './injectable';
+import { snake } from './snake';
 
 globalThis.createComponent = createComponent;
 globalThis.createInjectable = createInjectable;

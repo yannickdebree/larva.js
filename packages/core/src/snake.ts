@@ -1,35 +1,25 @@
 import { throwNewError } from './errors';
-import { Injectable } from './injectable';
-import { createNode, Node, NodePropertiesInput } from './node';
-import { Data } from './shared';
+import { createNode, Node, NodeData, NodePropertiesInput } from './node';
 
-interface SnakeInstance extends Node {
-  registerInjectables(...injectables: Array<Injectable>): void;
-}
+interface SnakeInstance extends Node {}
 
-export function snake(tag: string, data?: (...dependencies: Array<any>) => Data): SnakeInstance {
+export function snake(selector: string, data?: NodeData): SnakeInstance {
   if (!window) {
-    return throwNewError(`Window object is unknowned.`);
+    throwNewError(`Window object is unknowned.`);
   }
 
-  const domElement: Element = window.document.querySelector(tag);
+  const domElement: Element = window.document.querySelector(selector);
 
   if (!domElement) {
-    return throwNewError(`"${tag}" element does't exist.`);
+    throwNewError(`"${selector}" element doesn't exist in DOM.`);
   }
 
   const properties: NodePropertiesInput = {
     domElement,
-    id: tag,
+    tag: selector,
     template: `<h1>Congratulations !</h1>
   <p>You just created a Snake.js app here.</h1>`
   };
 
-  return {
-    ...createNode(properties, data),
-    registerInjectables(...injectables: Array<Injectable>) {
-      console.log(injectables);
-      return this;
-    }
-  };
+  return createNode(properties, data);
 }

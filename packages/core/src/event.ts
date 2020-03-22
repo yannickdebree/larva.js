@@ -1,5 +1,8 @@
+// TODO : complete enum with JS. native event types.
 export enum EventTypes {
   click = 'click',
-  hover = 'hover',
+  keydown = 'keydown',
+  keyup = 'keyup',
+  mouseover = 'mouseover',
   submit = 'submit'
 }

@@ -21,7 +21,7 @@ function coreBundle() {
         .pipe(source('core.js'))
         .on('error', fancy_log)
         .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(sourcemaps.init({ loadMaps: false }))
         .pipe(gulp.dest('integrations/dist'));
 }
 

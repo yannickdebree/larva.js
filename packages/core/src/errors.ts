@@ -1,4 +1,3 @@
-export function throwNewError(message: string): null {
-  console.error(new Error(message));
-  return null;
+export function throwNewError(message: string): void {
+  throw new Error(message);
 }

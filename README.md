@@ -32,7 +32,7 @@ You must have an HTML file to run your Snake.js application.
 ...
 <script href="(path)/snake.js"></script>
 <script>
-  snake("#snake-app").render();
+  snake('#snake-app').render();
 </script>
 ```
 
