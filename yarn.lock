@@ -1467,7 +1467,7 @@ detective@^5.2.0:
   dependencies:
     acorn-node "^1.6.1"
     defined "^1.0.0"
-    minimist "^1.1.1"
+    minimist "^1.2.2"
 
 diff@3.5.0:
   version "3.5.0"
