@@ -6,13 +6,19 @@ var tsify = require('tsify');
 var fancy_log = require('fancy-log');
 var buffer = require('vinyl-buffer');
 
-var watchedBrowserify = watchify(browserify({
-    basedir: '.',
-    debug: true,
-    entries: ['packages/core/index.ts'],
-    cache: {},
-    packageCache: {},
-}).plugin(tsify));
+const getBrowserifyObject = function (inputFile) {
+    const defaultInputFile = {
+        basedir: '.',
+        debug: true,
+        entries: ['packages/core/index.ts'],
+        cache: {},
+        packageCache: {},
+    }
+    return browserify({ ...defaultInputFile, ...inputFile }).plugin(tsify);
+}
+
+
+var watchedBrowserify = watchify(getBrowserifyObject());
 
 function coreBundle() {
     return watchedBrowserify
@@ -26,3 +32,11 @@ function coreBundle() {
 gulp.task('build:core:watch', coreBundle);
 watchedBrowserify.on('update', coreBundle);
 watchedBrowserify.on('log', fancy_log);
+
+gulp.task(
+    "build:core", function () {
+        return getBrowserifyObject({ debug: false }).bundle()
+            .pipe(source("core.snake.js"))
+            .pipe(gulp.dest("dist"));
+    }
+);

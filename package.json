@@ -2,12 +2,14 @@
   "license": "MIT",
   "version": "1.0.0",
   "name": "@snake.js/srcs",
+  "description": "Functionnal programming Javascript framework to build web applications.",
   "private": true,
   "scripts": {
+    "build": "gulp build:core",
     "build:watch": "gulp build:core:watch",
     "lint": "prettier --write \"**/*.ts\"",
-    "start": "concurrently \"npm run start:integrations\" \"npm run build:watch\"",
-    "start:integrations": "http-server integrations",
+    "start": "concurrently \"npm run serve:integrations\" \"npm run build:watch\"",
+    "serve:integrations": "http-server integrations",
     "test": "mocha -r ts-node/register packages/**/*.spec.ts"
   },
   "devDependencies": {
