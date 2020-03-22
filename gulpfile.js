@@ -3,7 +3,6 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var tsify = require('tsify');
-var sourcemaps = require('gulp-sourcemaps');
 var fancy_log = require('fancy-log');
 var buffer = require('vinyl-buffer');
 
@@ -21,7 +20,6 @@ function coreBundle() {
         .pipe(source('core.js'))
         .on('error', fancy_log)
         .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps: false }))
         .pipe(gulp.dest('integrations/dist'));
 }
 
