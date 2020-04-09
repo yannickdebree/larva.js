@@ -1,6 +1,6 @@
-import { throwNewError } from './errors';
-import { getArgumentsNamesOfFunction } from './helpers';
+import { getArrowFunctionErrorMessage, throwNewError } from './errors';
 import { NodeData } from './node';
+import { getArgumentsNamesOfFunction, isAnArrowFunction } from './utils';
 
 export type Dependency = {
   [key: string]: any;
@@ -19,8 +19,8 @@ export interface InjectorDictionnay {
 }
 
 export function createInjectable(id: InjectableId, data: NodeData): Injectable {
-  if (typeof data === 'function' && /^[^{]+?=>/.test(data.toString())) {
-    throwNewError('Node data setting must be a closed scope function, not an arrow function.');
+  if (data && isAnArrowFunction(data)) {
+    throwNewError(getArrowFunctionErrorMessage());
   }
 
   const injectablesIds = new Array<InjectableId>();

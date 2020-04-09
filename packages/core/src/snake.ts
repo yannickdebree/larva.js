@@ -23,7 +23,7 @@ export function snake(selector: string, data?: NodeData): SnakeInstance {
   const properties: NodePropertiesInput = {
     domElement,
     tag: selector,
-    template: `<h1>Congratulations !</h1>
+    scriptedTemplate: `<h1>Congratulations !</h1>
   <p>You just created a Snake.js app here.</h1>`
   };
 

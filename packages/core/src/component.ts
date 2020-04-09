@@ -9,7 +9,7 @@ export function createComponent(tag: string, data?: NodeData): Component {
   const properties: NodePropertiesInput = {
     domElement: undefined,
     tag,
-    template: ''
+    scriptedTemplate: ''
   };
 
   return {

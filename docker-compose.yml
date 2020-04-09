@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  snake-srcs:
+    image: 'node:10'
+    working_dir: /usr/src/snake
+    volumes:
+      - .:/usr/src/snake
+    ports:
+      - 8080:8080
+    command: yarn start

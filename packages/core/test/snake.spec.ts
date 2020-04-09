@@ -3,7 +3,7 @@ import { snake } from '../src/snake';
 const Window = require('window');
 
 context('@snake.js/core', function() {
-  beforeEach(function() {
+  it('Each snake instance is unique', function() {
     globalThis.window = new Window();
 
     for (let i = 0; i < 3; ++i) {
@@ -13,9 +13,6 @@ context('@snake.js/core', function() {
 
       window.document.body.appendChild(appContainer);
     }
-  });
-
-  it('Each snake instance is unique', function() {
     const app1 = snake('#snake-app-1');
 
     const app1Reference = app1.setTemplate('<h1>Hello world</h1>');
