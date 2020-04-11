@@ -29,6 +29,10 @@ export function renderNode<T>(_node: Node<T>): void {
 
     (node.__property('components') as Array<Component>).forEach(function(component: Component): void {
       nodeDomElement.querySelectorAll(`s-${component.__property('tag')}`).forEach(function(element: Element): void {
+        // if (!node.__property('templateInjectionUsing')) {
+        //   component.setTemplate(element.innerHTML);
+        // }
+
         element.outerHTML = `<div ${snakeComponentCommonAttribute()}="${component.__property(
           'tag'
         )}">${component.__property('scriptedTemplate')}</div>`;
@@ -100,6 +104,9 @@ export function renderNode<T>(_node: Node<T>): void {
       });
     }
   }
+
+  // console.log('scriptedData : ', node.__property('scriptedData'));
+  // console.log('nodeData : ', nodeData);
 
   Object.keys(node.__property('bindedDomElements')).forEach(function(uid: string) {
     node.__injectContentToBindedDomElement(

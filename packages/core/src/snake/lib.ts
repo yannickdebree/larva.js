@@ -26,7 +26,9 @@ export function snake<S>(_selector: string, _data?: DataAccessor<S>): Snake<S> {
         _data
       ),
 
-      disableTemplateInjection(): Snake<S> {
+      enableTemplateInjection(value = true): Snake<S> {
+        this.__setTemplateInjectionUsing(value);
+
         return this;
       }
     };

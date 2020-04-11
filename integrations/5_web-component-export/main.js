@@ -1,5 +1,3 @@
-const a = createComponent('button').setTemplate('<button>Hello world</button>');
+const component = createComponent('button').setTemplate('<button>Hello world</button>');
 
-console.log(a);
-
-// .useAsWebComponent();
+component.useAsWebComponent();

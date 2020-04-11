@@ -10,7 +10,7 @@ import {
 } from '../../kernel';
 import { isAnArrowFn, uniqueId } from '../../shared';
 import { Node, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../_types';
-import { hydrateChildComponents } from './_hydratation';
+import { transferInjectablesToChildComponents } from './_hydratation';
 import { renderNode } from './_rendering';
 
 export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<N>): Node<N> {
@@ -18,7 +18,7 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     throwNewError(arrowFnErrorMessage());
   }
 
-  const propertiesManager = {
+  const properties = {
     ..._properties,
     bindedDomElements: {},
     components: new Array<Component>(),
@@ -31,10 +31,10 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
 
   function translateInjectables(injectablesIds: Array<InjectableId>): Dependency[] {
     return injectablesIds.map(function(injectableId: string) {
-      const injectable = propertiesManager.injectableDictionnay[injectableId];
+      const injectable = properties.injectableDictionnay[injectableId];
 
       if (!injectable) {
-        throwNewError(`"${injectableId}" is not declared as injectable in the "${propertiesManager.tag}" node.`);
+        throwNewError(`"${injectableId}" is not declared as injectable in the "${properties.tag}" node.`);
       }
 
       const dependencies = new Array<Dependency>();
@@ -66,8 +66,8 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
   let data: N;
 
   const node: Node<N> = {
-    __closeOneDomElementsInjectionOperation(): Node<N> {
-      return node;
+    __closeOneDomElementsInjectionOperation(): void {
+      properties.domElementsInjectionOperationTread--;
     },
 
     __data(): N {
@@ -75,7 +75,7 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
         data = new Proxy(runDataAccessor(_dataAccessor), {
           set(target: N, property: string, value: any) {
             target[property] = value;
-            renderNode(node);
+            renderNode(this);
             return true;
           }
         });
@@ -84,11 +84,11 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     },
 
     __injectContentToBindedDomElement(content: string, uid: string): void {
-      propertiesManager.bindedDomElements[uid].textContent = content;
+      properties.bindedDomElements[uid].textContent = content;
     },
 
     __property(key: NodePropertyKey): NodePropertyValue {
-      const value = propertiesManager[key];
+      const value = properties[key];
       if (key === 'domElement') {
         return value;
       } else if (typeof value === 'object') {
@@ -98,12 +98,23 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
       }
     },
 
+    __setViewAsLoaded(): void {
+      properties.isViewLoaded = true;
+    },
+
+    __setTemplateInjectionUsing(value = true): void {
+      properties.components.forEach(function(component: Component): void {
+        component.__setTemplateInjectionUsing(value);
+      });
+      properties.templateInjectionUsing = value;
+    },
+
     registerComponent(component: Component): Node<N> {
-      propertiesManager.components = [...propertiesManager.components, component];
+      properties.components = [...properties.components, component];
 
-      hydrateChildComponents(node);
+      transferInjectablesToChildComponents(this);
 
-      return node;
+      return this;
     },
 
     registerInjectable(injectable: Injectable) {
@@ -111,23 +122,23 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
 
       patch[injectable.id()] = injectable;
 
-      propertiesManager.injectableDictionnay = { ...propertiesManager.injectableDictionnay, ...patch };
+      properties.injectableDictionnay = { ...properties.injectableDictionnay, ...patch };
 
-      hydrateChildComponents(node);
+      transferInjectablesToChildComponents(this);
 
-      return node;
-    },
-
-    __setViewAsLoaded(): void {
-      propertiesManager.isViewLoaded = true;
+      return this;
     },
 
     render(): Node<N> {
-      renderNode(node);
-      return node;
+      renderNode(this);
+      return this;
     },
 
     setTemplate(template: string): Node<N> {
+      if (!properties.templateInjectionUsing) {
+        throwNewError('You have to enable template injection to use template setting.');
+      }
+
       if (!template) {
         throwNewError('Please define a correct template.');
       }
@@ -140,19 +151,19 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
 
           const uid = uniqueId();
 
-          propertiesManager.scriptedData[uid] = termBeforeComputing;
+          properties.scriptedData[uid] = termBeforeComputing;
 
-          propertiesManager.bindedDomElements[uid] = window.document.createTextNode('');
+          properties.bindedDomElements[uid] = window.document.createTextNode('');
 
-          propertiesManager.domElementsInjectionOperationTread++;
+          properties.domElementsInjectionOperationTread++;
 
           template = template.replace(scriptedTerm, `<!--${uid}-->`);
         });
       }
 
-      propertiesManager.scriptedTemplate = template;
+      properties.scriptedTemplate = template;
 
-      return node;
+      return this;
     }
   };
 

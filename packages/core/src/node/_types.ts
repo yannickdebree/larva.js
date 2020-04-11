@@ -25,6 +25,7 @@ export interface Node<N = any> {
   __data(): N;
   __injectContentToBindedDomElement(content: string, uid: string): void;
   __property(key: NodePropertyKey): NodeProperties[NodePropertyKey];
+  __setTemplateInjectionUsing(value: boolean): void;
   __setViewAsLoaded(): void;
   registerInjectable(injectable: Injectable): Node<N>;
   registerComponent(component: Component): Node<N>;

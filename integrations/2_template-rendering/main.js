@@ -7,12 +7,7 @@ const counter = createComponent('counter', function() {
       this.count++;
     }
   };
-}).setTemplate(`
-  <h2>Counter</h2>
-  <button s-on-click="more($event, count)">+</button>
-    {{ (2 * count) + 1 }}
-  <button s-on-click="count--">-</button>
-`);
+});
 
 const form = createComponent('form', function() {
   return {
@@ -21,15 +16,11 @@ const form = createComponent('form', function() {
       this.term = $event.target.value;
     }
   };
-}).setTemplate(`
-  <h2>Dynamic form</h2>
-  <input type="text" s-on-keyup="onKeyUp($event)" />
-  <p>{{ term }}</p>
-`);
+});
 
 snake('#snake-app')
-  .disableTemplateInjection()
   .registerComponent(counter)
   .registerComponent(form)
-  .setTemplate('<s-counter></s-counter><s-form></s-form>')
+  .enableTemplateInjection(false)
+  .setTemplate('fefre')
   .render();
