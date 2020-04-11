@@ -13,6 +13,7 @@ context('@snake.js/core', function() {
 
       window.document.body.appendChild(appContainer);
     }
+
     const app1 = snake('#snake-app-1');
 
     const app1Reference = app1.setTemplate('<h1>Hello world</h1>');

@@ -1,12 +1,18 @@
+/**
+ * Services
+ */
+
 const service1 = createInjectable('myFirstService', function() {
+  const message = 'Hello';
   return {
-    message: 'Hello world'
+    message1: message,
+    message2: message + 'World'
   };
 });
 
 const service2 = createInjectable('mySecondService', function(myFirstService) {
   return {
-    message: myFirstService.message
+    message: myFirstService.message2
   };
 });
 
@@ -31,6 +37,9 @@ const service5 = createInjectable('myFiveService', function() {
   };
 });
 
+/**
+ * Components
+ */
 const comp1 = createComponent('comp1', function(mySecondService) {
   return {
     message: mySecondService.message
@@ -48,6 +57,9 @@ const comp3 = createComponent('comp3', function(myFiveService) {
   return {};
 }).registerInjectables(service5);
 
+/**
+ * App instance
+ */
 const app = snake('#snake-app', function(myFourthService) {
   return { ...myFourthService };
 })
