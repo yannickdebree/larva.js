@@ -19,11 +19,6 @@
       "es2015",
       "dom"
     ],
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths"
-      }
-    ],
     "paths": {
       "@_components": [
         "src/components"

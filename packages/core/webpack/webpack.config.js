@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     new DeclarationBundlerPlugin({
       moduleName: 'snake.js.core',
-      out: 'types.d.ts'
+      out: 'core.types.d.ts'
     })
   ],
   resolve: {

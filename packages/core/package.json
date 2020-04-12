@@ -2,11 +2,18 @@
   "name": "@snake.js/core",
   "version": "1.0.0",
   "description": "Snake.js - core package",
-  "repository": "https://github.com/yannickdebree/snake.js/tree/master/packages/core",
   "license": "MIT",
-  "private": true,
   "main": "dist/core.js",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/core.types.d.ts",
+  "author": {
+    "name": "Yannick Debrée",
+    "email": "debree.yannickdebree13@gmail.com",
+    "url": "https://it.yannickdebree.com"
+  },
+  "repository": {
+    "url": "https://github.com/yannickdebree/snake.js",
+    "directory": "packages/core"
+  },
   "keywords": [
     "snake.js",
     "core"
