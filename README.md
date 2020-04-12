@@ -1,6 +1,6 @@
 <h1>Snake.js</h1>
 
-<img height="100px" src="./docs/logo.png">
+<img height="100px" src="./docs/snake.js-logo.png">
 
 A(n other...) framework to develop web applications in Javascript.
 

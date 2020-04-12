@@ -5,12 +5,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:core": "gulp build:core",
+    "build:core": "webpack-dev-server --config packages/core/webpack.config.js",
     "build:core:watch": "gulp build:core:watch",
-    "lint": "prettier --write \"**/*.ts\"",
+    "format": "prettier --write \"**/*.ts\" \"**/*.js\"",
+    "lint": "eslint .",
     "serve:integrations": "http-server integrations",
-    "start": "concurrently \"npm run serve:integrations\" \"npm run build:watch\"",
-    "snake": "ts-node -r ts-node/register packages/cli/index.ts",
+    "start": "concurrently \"npm run serve:integrations\" \"npm run build:core:watch\"",
     "test": "mocha -r ts-node/register packages/**/*.spec.ts"
   },
   "devDependencies": {
@@ -20,18 +20,23 @@
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
     "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "http-server": "^0.11.1",
     "mocha": "^7.1.1",
     "prettier": "^1.19.1",
+    "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",
     "tsify": "^4.0.1",
     "typescript": "^3.8.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.1",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
     "window": "^4.2.7"
   }
 }

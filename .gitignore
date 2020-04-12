@@ -1,11 +1,15 @@
+# Compile
+dist
+
 # Dependencies
 node_modules
 package-lock.json
+yarn.lock
 
 # IDE
 .vscode
 
-# Others
+# Tools
 makefile
 Makefile
 Dockerfile
