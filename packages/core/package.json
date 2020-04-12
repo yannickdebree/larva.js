@@ -1,0 +1,7 @@
+{
+  "name": "@snake.js/core",
+  "version": "1.0.0",
+  "repository": "https://github.com/yannickdebree/snake.js/tree/master/packages/core",
+  "license": "MIT",
+  "private": true
+}

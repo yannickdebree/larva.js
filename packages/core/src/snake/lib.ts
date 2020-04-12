@@ -9,7 +9,7 @@ export function snake<S>(_selector: string, _data?: DataAccessor<S>): Snake<S> {
       throwNewError(`Window object is unknowned.`);
     }
 
-    const domElement: Element = window.document.querySelector(_selector);
+    const domElement = window.document.querySelector(_selector) as Element;
 
     if (!domElement) {
       throwNewError(`"${_selector}" element doesn't exist in DOM.`);

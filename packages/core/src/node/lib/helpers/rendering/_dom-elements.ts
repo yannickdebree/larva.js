@@ -7,7 +7,7 @@ export function runDomElementInjection(node: Node, nodeDomElement: Element): voi
   markedBindedPoints.forEach(function(markedBindedPoint: string) {
     const uid = markedBindedPoint.replace(/(<!--|-->)/gm, '');
 
-    const comment = findCommentMarkedByUid(uid, nodeDomElement);
+    const comment = findCommentMarkedByUid(uid, nodeDomElement) as ChildNode;
 
     const commentParent = comment.parentNode;
 

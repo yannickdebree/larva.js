@@ -7,7 +7,6 @@ const main = createComponent('main')
   .setTemplate('<main>This is the main content<s-button></s-button></main>');
 
 const app = snake('#snake-app')
-  .registerComponent(header)
-  .registerComponent(main)
+  .registerComponents(header, main)
   .setTemplate(`<s-header></s-header><s-main></s-main>`)
   .render();

@@ -2,7 +2,7 @@ import { Component } from '../../../component';
 import { Injectable, InjectableDictionnay } from '../../../injectable';
 import { DataAccessor, templateBindingRgx, throwNewError } from '../../../kernel';
 import { uniqueId } from '../../../shared';
-import { Node, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../../_types';
+import { Node, NodePropertiesInput, NodePropertyKey, NodePropertyValue, NodeProperties } from '../../_types';
 import {
   renderNode,
   runDataAccessor,
@@ -11,7 +11,7 @@ import {
 } from '../helpers';
 
 export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<N>): Node<N> {
-  const properties = {
+  const properties: NodeProperties = {
     ..._properties,
     bindedDomElements: {},
     components: new Array<Component>(),
@@ -77,7 +77,14 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
       return this;
     },
 
-    registerInjectable(injectable: Injectable) {
+    registerComponents(...components: Array<Component>): Node<N> {
+      components.forEach((component: Component) => {
+        this.registerComponent(component);
+      });
+      return this;
+    },
+
+    registerInjectable(injectable: Injectable): Node<N> {
       const patch: InjectableDictionnay = {};
 
       patch[injectable.id()] = injectable;
@@ -86,6 +93,13 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
 
       transferInjectablesToChildComponents(this);
 
+      return this;
+    },
+
+    registerInjectables(...injectables: Array<Injectable>): Node<N> {
+      injectables.forEach((injectable: Injectable) => {
+        this.registerInjectable(injectable);
+      });
       return this;
     },
 

@@ -3,7 +3,7 @@ import { DataAccessor, fnArgumentsNames, throwNewError } from '../../../kernel';
 import { Node } from '../../_types';
 import { translateInjectables } from './_injectables';
 
-export function runDataAccessor<D = any>(node: Node<D>, _dataAccessor: DataAccessor<D>): D | any {
+export function runDataAccessor<D = any>(node: Node<D>, _dataAccessor?: DataAccessor<D>): D | any {
   if (_dataAccessor) {
     const injectablesIds: Array<InjectableId> = fnArgumentsNames(_dataAccessor);
 

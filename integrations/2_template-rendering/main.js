@@ -16,6 +16,5 @@ const form = createComponent('form', () => ({
 
 snake('#snake-app')
   .enableTemplateInjection(false)
-  .registerComponent(counter)
-  .registerComponent(form)
+  .registerComponents(counter, form)
   .render();

@@ -2,7 +2,7 @@ import { Component } from '../component';
 import { Injectable, InjectableDictionnay } from '../injectable';
 
 export interface NodePropertiesInput {
-  domElement: Element;
+  domElement: Element | undefined;
   scriptedTemplate: string;
   tag: string;
 }
@@ -27,8 +27,10 @@ export interface Node<N = any> {
   __property(key: NodePropertyKey): NodeProperties[NodePropertyKey];
   __setTemplateInjectionUsing(value: boolean): void;
   __setViewAsLoaded(): void;
-  registerInjectable(injectable: Injectable): Node<N>;
   registerComponent(component: Component): Node<N>;
+  registerComponents(...components: Array<Component>): Node<N>;
+  registerInjectable(injectable: Injectable): Node<N>;
+  registerInjectables(...injectables: Array<Injectable>): Node<N>;
   render(): Node<N>;
   setTemplate(template: string): Node<N>;
 }

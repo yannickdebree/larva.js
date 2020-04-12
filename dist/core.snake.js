@@ -3,20 +3,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./src/main");
 
-},{"./src/main":20}],2:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-
-},{}],3:[function(require,module,exports){
+},{"./src/main":17}],2:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./lib"));
-__export(require("./_types"));
 
-},{"./_types":2,"./lib":6}],4:[function(require,module,exports){
+},{"./lib":5}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function useNodeAsWebComponent(node) {
@@ -29,7 +24,7 @@ function useNodeAsWebComponent(node) {
 }
 exports.useNodeAsWebComponent = useNodeAsWebComponent;
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -37,20 +32,20 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./_web-component"));
 
-},{"./_web-component":4}],6:[function(require,module,exports){
+},{"./_web-component":3}],5:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./o"));
+__export(require("./src"));
 
-},{"./o":8}],7:[function(require,module,exports){
+},{"./src":7}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_1 = require("../../../node");
 const shared_1 = require("../../../shared");
-const i_1 = require("../i");
+const helpers_1 = require("../helpers");
 function createComponent(tag, dataAccessor) {
     return shared_1.tryAndCatchOrReturn(function () {
         const node = node_1.createNode({
@@ -59,14 +54,14 @@ function createComponent(tag, dataAccessor) {
             scriptedTemplate: ''
         }, dataAccessor);
         const component = Object.assign(Object.assign({}, node), { useAsWebComponent() {
-                i_1.useNodeAsWebComponent(this);
+                helpers_1.useNodeAsWebComponent(this);
             } });
         return component;
     });
 }
 exports.createComponent = createComponent;
 
-},{"../../../node":22,"../../../shared":35,"../i":5}],8:[function(require,module,exports){
+},{"../../../node":18,"../../../shared":31,"../helpers":4}],7:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -74,16 +69,13 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./_factory"));
 
-},{"./_factory":7}],9:[function(require,module,exports){
+},{"./_factory":6}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../kernel");
 const shared_1 = require("../shared");
 function createInjectable(id, dataAccessor) {
     return shared_1.tryAndCatchOrReturn(function () {
-        if (dataAccessor && shared_1.isAnArrowFn(dataAccessor)) {
-            kernel_1.throwNewError(kernel_1.arrowFnErrorMessage());
-        }
         const injectablesIds = new Array();
         if (dataAccessor) {
             injectablesIds.push(...kernel_1.fnArgumentsNames(dataAccessor));
@@ -103,18 +95,15 @@ function createInjectable(id, dataAccessor) {
 }
 exports.createInjectable = createInjectable;
 
-},{"../kernel":19,"../shared":35}],10:[function(require,module,exports){
-arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],11:[function(require,module,exports){
+},{"../kernel":16,"../shared":31}],9:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./_lib"));
-__export(require("./_types"));
 
-},{"./_lib":9,"./_types":10}],12:[function(require,module,exports){
+},{"./_lib":8}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function findCommentMarkedByUid(uid, element) {
@@ -134,19 +123,15 @@ function findCommentMarkedByUid(uid, element) {
 }
 exports.findCommentMarkedByUid = findCommentMarkedByUid;
 
-},{}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function throwNewError(message) {
     throw new Error(message);
 }
 exports.throwNewError = throwNewError;
-function arrowFnErrorMessage() {
-    return 'Function in params must be a closed scope function, not an arrow function.';
-}
-exports.arrowFnErrorMessage = arrowFnErrorMessage;
 
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var EventTypes;
@@ -159,7 +144,7 @@ var EventTypes;
     EventTypes[EventTypes["submit"] = 5] = "submit";
 })(EventTypes = exports.EventTypes || (exports.EventTypes = {}));
 
-},{}],15:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function warning(error) {
@@ -167,7 +152,7 @@ function warning(error) {
 }
 exports.warning = warning;
 
-},{}],16:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function templateBindingRgx() {
@@ -183,11 +168,10 @@ function arrowFunctionRgx() {
 }
 exports.arrowFunctionRgx = arrowFunctionRgx;
 
-},{}],17:[function(require,module,exports){
-arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],18:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const shared_1 = require("../shared");
 function timestamp() {
     return `${new Date().getTime().toString()}`;
 }
@@ -197,15 +181,30 @@ function snakeComponentCommonAttribute() {
 }
 exports.snakeComponentCommonAttribute = snakeComponentCommonAttribute;
 function fnArgumentsNames(fn) {
-    return (fn.toString() + '')
-        .replace(/[/][/].*$/gm, '')
-        .replace(/\s+/g, '')
-        .replace(/[/][*][^/*]*[*][/]/g, '')
-        .split('){', 1)[0]
-        .replace(/^[^(]*[(]/, '')
-        .replace(/=[^,]+/g, '')
-        .split(',')
-        .filter(Boolean);
+    let params;
+    if (shared_1.isAnArrowFn(fn)) {
+        params = fn
+            .toString()
+            .replace(/\s*=>\s*\(*{.*/gs, '')
+            .replace(/\(|\)/gm, '')
+            .replace(/\s*/gm, '');
+    }
+    else {
+        params = fn
+            .toString()
+            .replace(/[/][/].*$/gm, '')
+            .replace(/\s+/g, '')
+            .replace(/[/][*][^/*]*[*][/]/g, '')
+            .split('){', 1)[0]
+            .replace(/^[^(]*[(]/, '')
+            .replace(/=[^,]+/g, '');
+    }
+    if (params !== '') {
+        return params.split(',');
+    }
+    else {
+        return [];
+    }
 }
 exports.fnArgumentsNames = fnArgumentsNames;
 function runCodeBindingObject(codeToRun, obj) {
@@ -216,7 +215,7 @@ function runCodeBindingObject(codeToRun, obj) {
 }
 exports.runCodeBindingObject = runCodeBindingObject;
 
-},{}],19:[function(require,module,exports){
+},{"../shared":31}],16:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -227,10 +226,9 @@ __export(require("./_error"));
 __export(require("./_event"));
 __export(require("./_logger"));
 __export(require("./_regex"));
-__export(require("./_types"));
 __export(require("./_utils"));
 
-},{"./_dom":12,"./_error":13,"./_event":14,"./_logger":15,"./_regex":16,"./_types":17,"./_utils":18}],20:[function(require,module,exports){
+},{"./_dom":10,"./_error":11,"./_event":12,"./_logger":13,"./_regex":14,"./_utils":15}],17:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const component_1 = require("./component");
@@ -240,11 +238,9 @@ globalThis.createComponent = component_1.createComponent;
 globalThis.createInjectable = injectable_1.createInjectable;
 globalThis.snake = snake_1.snake;
 
-},{"./component":3,"./injectable":11,"./snake":36}],21:[function(require,module,exports){
+},{"./component":2,"./injectable":9,"./snake":32}],18:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],22:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"./_types":21,"./lib":32,"dup":3}],23:[function(require,module,exports){
+},{"./lib":28,"dup":2}],19:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../kernel");
@@ -264,7 +260,7 @@ function runDataAccessor(node, _dataAccessor) {
 }
 exports.runDataAccessor = runDataAccessor;
 
-},{"../../../kernel":19,"./_injectables":24}],24:[function(require,module,exports){
+},{"../../../kernel":16,"./_injectables":20}],20:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../kernel");
@@ -291,7 +287,7 @@ function translateInjectables(node, injectablesIds) {
 }
 exports.translateInjectables = translateInjectables;
 
-},{"../../../kernel":19}],25:[function(require,module,exports){
+},{"../../../kernel":16}],21:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function transferTemplateInjectionUsingValueToChildComponents(node) {
@@ -301,7 +297,7 @@ function transferTemplateInjectionUsingValueToChildComponents(node) {
 }
 exports.transferTemplateInjectionUsingValueToChildComponents = transferTemplateInjectionUsingValueToChildComponents;
 
-},{}],26:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -312,7 +308,7 @@ __export(require("./_data-accessor"));
 __export(require("./_template-injection"));
 __export(require("./_injectables"));
 
-},{"./_data-accessor":23,"./_injectables":24,"./_template-injection":25,"./rendering":31}],27:[function(require,module,exports){
+},{"./_data-accessor":19,"./_injectables":20,"./_template-injection":21,"./rendering":27}],23:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../../kernel");
@@ -334,7 +330,7 @@ function injectContentsToBindedDomElements(node) {
 }
 exports.injectContentsToBindedDomElements = injectContentsToBindedDomElements;
 
-},{"../../../../kernel":19}],28:[function(require,module,exports){
+},{"../../../../kernel":16}],24:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../../kernel");
@@ -342,19 +338,24 @@ const _dom_elements_1 = require("./_dom-elements");
 const _outputs_1 = require("./_outputs");
 const _render_node_1 = require("./_render-node");
 function loadNodeView(node, nodeDomElement) {
-    console.log(node);
-    console.log(nodeDomElement);
     if (!node.__property('templateInjectionUsing')) {
-    }
-    else {
-        nodeDomElement.innerHTML = node.__property('scriptedTemplate');
         node.__property('components').forEach(function (component) {
-            nodeDomElement.querySelectorAll(`s-${component.__property('tag')}`).forEach(function (element) {
-                element.outerHTML = `<div ${kernel_1.snakeComponentCommonAttribute()}="${component.__property('tag')}">${component.__property('scriptedTemplate')}</div>`;
-                _render_node_1.renderNode(component);
+            nodeDomElement
+                .querySelectorAll(`[${kernel_1.snakeComponentCommonAttribute()}="${component.__property('tag')}"]`)
+                .forEach(function (element) {
+                component.setTemplate(element.innerHTML);
+                nodeDomElement.replaceChild(window.document.createElement(`s-${component.__property('tag')}`), element);
             });
         });
+        node.setTemplate(nodeDomElement.innerHTML);
     }
+    nodeDomElement.innerHTML = node.__property('scriptedTemplate');
+    node.__property('components').forEach(function (component) {
+        nodeDomElement.querySelectorAll(`s-${component.__property('tag')}`).forEach(function (element) {
+            element.outerHTML = `<div ${kernel_1.snakeComponentCommonAttribute()}="${component.__property('tag')}">${component.__property('scriptedTemplate')}</div>`;
+            _render_node_1.renderNode(component);
+        });
+    });
     _outputs_1.runOutputsWatching(node, nodeDomElement);
     if (node.__property('domElementsInjectionOperationTread') > 0) {
         _dom_elements_1.runDomElementInjection(node, nodeDomElement);
@@ -363,7 +364,7 @@ function loadNodeView(node, nodeDomElement) {
 }
 exports.loadNodeView = loadNodeView;
 
-},{"../../../../kernel":19,"./_dom-elements":27,"./_outputs":29,"./_render-node":30}],29:[function(require,module,exports){
+},{"../../../../kernel":16,"./_dom-elements":23,"./_outputs":25,"./_render-node":26}],25:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../../kernel");
@@ -412,7 +413,7 @@ function runOutputsWatching(node, nodeDomElement) {
 }
 exports.runOutputsWatching = runOutputsWatching;
 
-},{"../../../../kernel":19}],30:[function(require,module,exports){
+},{"../../../../kernel":16}],26:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../../kernel");
@@ -420,7 +421,6 @@ const _dom_elements_1 = require("./_dom-elements");
 const _load_node_view_1 = require("./_load-node-view");
 function renderNode(_node) {
     const node = Object.assign({}, _node);
-    console.log(node.__property('tag'));
     let nodeDomElement = node.__property('domElement');
     if (!nodeDomElement) {
         nodeDomElement = window.document.querySelector(`[${kernel_1.snakeComponentCommonAttribute()}=${node.__property('tag')}]`);
@@ -435,7 +435,7 @@ function renderNode(_node) {
 }
 exports.renderNode = renderNode;
 
-},{"../../../../kernel":19,"./_dom-elements":27,"./_load-node-view":28}],31:[function(require,module,exports){
+},{"../../../../kernel":16,"./_dom-elements":23,"./_load-node-view":24}],27:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -446,18 +446,15 @@ __export(require("./_outputs"));
 __export(require("./_load-node-view"));
 __export(require("./_render-node"));
 
-},{"./_dom-elements":27,"./_load-node-view":28,"./_outputs":29,"./_render-node":30}],32:[function(require,module,exports){
-arguments[4][6][0].apply(exports,arguments)
-},{"./o":34,"dup":6}],33:[function(require,module,exports){
+},{"./_dom-elements":23,"./_load-node-view":24,"./_outputs":25,"./_render-node":26}],28:[function(require,module,exports){
+arguments[4][5][0].apply(exports,arguments)
+},{"./src":30,"dup":5}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../../../kernel");
 const shared_1 = require("../../../shared");
-const i_1 = require("../i");
+const helpers_1 = require("../helpers");
 function createNode(_properties, _dataAccessor) {
-    if (_dataAccessor && shared_1.isAnArrowFn(_dataAccessor)) {
-        kernel_1.throwNewError(kernel_1.arrowFnErrorMessage());
-    }
     const properties = Object.assign(Object.assign({}, _properties), { bindedDomElements: {}, components: new Array(), domElementsInjectionOperationTread: 0, injectableDictionnay: {}, isViewLoaded: false, scriptedData: {}, templateInjectionUsing: true });
     let data;
     const node = {
@@ -466,10 +463,10 @@ function createNode(_properties, _dataAccessor) {
         },
         __data() {
             if (!data) {
-                data = new Proxy(i_1.runDataAccessor(this, _dataAccessor), {
+                data = new Proxy(helpers_1.runDataAccessor(this, _dataAccessor), {
                     set(target, property, value) {
                         target[property] = value;
-                        i_1.renderNode(this);
+                        helpers_1.renderNode(node);
                         return true;
                     }
                 });
@@ -496,29 +493,38 @@ function createNode(_properties, _dataAccessor) {
         },
         __setTemplateInjectionUsing(value = true) {
             properties.templateInjectionUsing = value;
-            i_1.transferTemplateInjectionUsingValueToChildComponents(this);
+            helpers_1.transferTemplateInjectionUsingValueToChildComponents(this);
         },
         registerComponent(component) {
             properties.components = [...properties.components, component];
-            i_1.transferInjectablesToChildComponents(this);
-            i_1.transferTemplateInjectionUsingValueToChildComponents(this);
+            helpers_1.transferInjectablesToChildComponents(this);
+            helpers_1.transferTemplateInjectionUsingValueToChildComponents(this);
+            return this;
+        },
+        registerComponents(...components) {
+            components.forEach((component) => {
+                this.registerComponent(component);
+            });
             return this;
         },
         registerInjectable(injectable) {
             const patch = {};
             patch[injectable.id()] = injectable;
             properties.injectableDictionnay = Object.assign(Object.assign({}, properties.injectableDictionnay), patch);
-            i_1.transferInjectablesToChildComponents(this);
+            helpers_1.transferInjectablesToChildComponents(this);
+            return this;
+        },
+        registerInjectables(...injectables) {
+            injectables.forEach((injectable) => {
+                this.registerInjectable(injectable);
+            });
             return this;
         },
         render() {
-            i_1.renderNode(this);
+            helpers_1.renderNode(this);
             return this;
         },
         setTemplate(template) {
-            if (!properties.templateInjectionUsing) {
-                kernel_1.throwNewError('You have to enable template injection to use template setting.');
-            }
             if (!template) {
                 kernel_1.throwNewError('Please define a correct template.');
             }
@@ -541,9 +547,9 @@ function createNode(_properties, _dataAccessor) {
 }
 exports.createNode = createNode;
 
-},{"../../../kernel":19,"../../../shared":35,"../i":26}],34:[function(require,module,exports){
-arguments[4][8][0].apply(exports,arguments)
-},{"./_factory":33,"dup":8}],35:[function(require,module,exports){
+},{"../../../kernel":16,"../../../shared":31,"../helpers":22}],30:[function(require,module,exports){
+arguments[4][7][0].apply(exports,arguments)
+},{"./_factory":29,"dup":7}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("./kernel");
@@ -553,9 +559,6 @@ function isAnArrowFn(fn) {
 exports.isAnArrowFn = isAnArrowFn;
 function tryAndCatchOrReturn(fn) {
     try {
-        if (isAnArrowFn(fn)) {
-            kernel_1.throwNewError(kernel_1.arrowFnErrorMessage());
-        }
         return fn();
     }
     catch (err) {
@@ -568,16 +571,9 @@ function uniqueId() {
 }
 exports.uniqueId = uniqueId;
 
-},{"./kernel":19}],36:[function(require,module,exports){
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./lib"));
-__export(require("./types"));
-
-},{"./lib":37,"./types":38}],37:[function(require,module,exports){
+},{"./kernel":16}],32:[function(require,module,exports){
+arguments[4][2][0].apply(exports,arguments)
+},{"./lib":33,"dup":2}],33:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kernel_1 = require("../kernel");
@@ -606,6 +602,4 @@ function snake(_selector, _data) {
 }
 exports.snake = snake;
 
-},{"../kernel":19,"../node":22,"../shared":35}],38:[function(require,module,exports){
-arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}]},{},[1]);
+},{"../kernel":16,"../node":18,"../shared":31}]},{},[1]);
