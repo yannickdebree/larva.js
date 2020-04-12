@@ -1,10 +1,12 @@
 {
   "name": "@snake.js/core",
   "version": "1.0.0",
+  "description": "Snake.js - core package",
   "repository": "https://github.com/yannickdebree/snake.js/tree/master/packages/core",
   "license": "MIT",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/core.js",
+  "typings": "dist/types.d.ts",
   "keywords": [
     "snake.js",
     "core"
@@ -17,6 +19,7 @@
     "build": "webpack --config webpack/webpack.production.config.js "
   },
   "devDependencies": {
+    "declaration-bundler-webpack-plugin": "^1.0.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }

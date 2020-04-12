@@ -1,3 +1,5 @@
+const DeclarationBundlerPlugin = require('./plugins/declaration-bundler-plugin');
+
 const path = require('path');
 
 module.exports = {
@@ -5,17 +7,31 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        test: /\.ts?$/,
+        use: 'ts-loader'
       }
     ]
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js']
-  },
   output: {
-    filename: 'index.js',
+    filename: 'core.js',
     path: path.resolve(__dirname, '../dist')
+  },
+  plugins: [
+    new DeclarationBundlerPlugin({
+      moduleName: 'snake.js.core',
+      out: 'types.d.ts'
+    })
+  ],
+  resolve: {
+    alias: {
+      '@_components': path.resolve(__dirname, '../src/components/'),
+      '@_injectables': path.resolve(__dirname, '../src/injectables/'),
+      '@_kernel': path.resolve(__dirname, '../src/kernel/'),
+      '@_nodes': path.resolve(__dirname, '../src/nodes/'),
+      '@_shared': path.resolve(__dirname, '../src/shared/'),
+      '@_snake': path.resolve(__dirname, '../src/snake/')
+    },
+    extensions: ['.ts']
   }
 };

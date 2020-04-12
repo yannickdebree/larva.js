@@ -1,2 +1,2 @@
-export * from './lib';
-export * from './types';
+export * from './_snake';
+export * from './_types';

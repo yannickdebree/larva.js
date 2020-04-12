@@ -1,3 +1,3 @@
 const config = require('./webpack.config');
 
-module.exports = { ...config, devtool: 'source-map', mode: 'development', watch: true };
+module.exports = { ...config, devtool: 'inline-source-map', mode: 'development', watch: true };
