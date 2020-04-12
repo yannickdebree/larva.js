@@ -1,8 +1,8 @@
-import { DataAccessor } from '../../kernel';
-import { createNode } from '../../node';
-import { tryAndCatchOrReturn } from '../../shared';
-import { Component } from '../_types';
-import { useNodeAsWebComponent } from './_web-component';
+import { DataAccessor } from '../../../kernel';
+import { createNode } from '../../../node';
+import { tryAndCatchOrReturn } from '../../../shared';
+import { Component } from '../../_types';
+import { useNodeAsWebComponent } from '../helpers';
 
 export function createComponent<C>(tag: string, dataAccessor?: DataAccessor<C>): Component<C> {
   return tryAndCatchOrReturn(function() {

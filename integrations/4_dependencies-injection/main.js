@@ -55,7 +55,7 @@ const comp2 = createComponent('comp2', function(myThirdService) {
 const comp3 = createComponent('comp3', function(myFiveService) {
   myFiveService.showMessage();
   return {};
-}).registerInjectables(service5);
+}).registerInjectable(service5);
 
 /**
  * App instance
@@ -63,8 +63,13 @@ const comp3 = createComponent('comp3', function(myFiveService) {
 const app = snake('#snake-app', function(myFourthService) {
   return { ...myFourthService };
 })
-  .registerInjectables(service1, service2, service3, service4)
-  .registerChildComponents(comp1, comp2, comp3)
+  .registerInjectable(service1)
+  .registerInjectable(service2)
+  .registerInjectable(service3)
+  .registerInjectable(service4)
+  .registerComponent(comp1)
+  .registerComponent(comp2)
+  .registerComponent(comp3)
   .setTemplate(
     `message : {{message}}, status : {{status}}
     <s-comp1></s-comp1><s-comp2></s-comp2><s-comp3></s-comp3>`

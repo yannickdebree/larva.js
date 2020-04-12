@@ -11,11 +11,3 @@ const app = snake('#snake-app')
   .registerComponent(main)
   .setTemplate(`<s-header></s-header><s-main></s-main>`)
   .render();
-
-setTimeout(() => {
-  const message = "Button's text has changed !";
-
-  button.setTemplate(`${message}`).render();
-
-  console.log(message);
-}, 2000);

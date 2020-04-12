@@ -1,4 +1,4 @@
-import { arrowFnErrorMessage, arrowFunctionRgx, throwNewError, timestamp, warning } from './kernel';
+import { arrowFunctionRgx, timestamp, warning } from './kernel';
 
 export function isAnArrowFn(fn: Function): boolean {
   return typeof fn === 'function' && arrowFunctionRgx().test(fn.toString());
@@ -6,9 +6,6 @@ export function isAnArrowFn(fn: Function): boolean {
 
 export function tryAndCatchOrReturn<T>(fn: () => T): T {
   try {
-    if (isAnArrowFn(fn)) {
-      throwNewError(arrowFnErrorMessage());
-    }
     return fn();
   } catch (err) {
     warning(err);

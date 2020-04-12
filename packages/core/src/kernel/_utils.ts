@@ -1,3 +1,5 @@
+import { isAnArrowFn } from '../shared';
+
 export function timestamp(): string {
   return `${new Date().getTime().toString()}`;
 }
@@ -7,15 +9,28 @@ export function snakeComponentCommonAttribute(): string {
 }
 
 export function fnArgumentsNames(fn: Function): Array<string> {
-  return (fn.toString() + '')
-    .replace(/[/][/].*$/gm, '')
-    .replace(/\s+/g, '')
-    .replace(/[/][*][^/*]*[*][/]/g, '')
-    .split('){', 1)[0]
-    .replace(/^[^(]*[(]/, '')
-    .replace(/=[^,]+/g, '')
-    .split(',')
-    .filter(Boolean);
+  let params: string;
+  if (isAnArrowFn(fn)) {
+    params = fn
+      .toString()
+      .replace(/\s*=>\s*\(*{.*/gs, '')
+      .replace(/\(|\)/gm, '')
+      .replace(/\s*/gm, '');
+  } else {
+    params = fn
+      .toString()
+      .replace(/[/][/].*$/gm, '')
+      .replace(/\s+/g, '')
+      .replace(/[/][*][^/*]*[*][/]/g, '')
+      .split('){', 1)[0]
+      .replace(/^[^(]*[(]/, '')
+      .replace(/=[^,]+/g, '');
+  }
+  if (params !== '') {
+    return params.split(',');
+  } else {
+    return [];
+  }
 }
 
 export function runCodeBindingObject<O>(codeToRun: string, obj: O): unknown {

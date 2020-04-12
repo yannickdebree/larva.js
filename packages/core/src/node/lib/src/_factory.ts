@@ -1,23 +1,16 @@
-import { Component } from '../../component';
-import { Injectable, InjectableDictionnay, InjectableId } from '../../injectable';
+import { Component } from '../../../component';
+import { Injectable, InjectableDictionnay } from '../../../injectable';
+import { DataAccessor, templateBindingRgx, throwNewError } from '../../../kernel';
+import { uniqueId } from '../../../shared';
+import { Node, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../../_types';
 import {
-  arrowFnErrorMessage,
-  DataAccessor,
-  Dependency,
-  fnArgumentsNames,
-  templateBindingRgx,
-  throwNewError
-} from '../../kernel';
-import { isAnArrowFn, uniqueId } from '../../shared';
-import { Node, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../_types';
-import { transferInjectablesToChildComponents } from './_hydratation';
-import { renderNode } from './_rendering';
+  renderNode,
+  runDataAccessor,
+  transferInjectablesToChildComponents,
+  transferTemplateInjectionUsingValueToChildComponents
+} from '../helpers';
 
 export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<N>): Node<N> {
-  if (_dataAccessor && isAnArrowFn(_dataAccessor)) {
-    throwNewError(arrowFnErrorMessage());
-  }
-
   const properties = {
     ..._properties,
     bindedDomElements: {},
@@ -29,40 +22,6 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     templateInjectionUsing: true
   };
 
-  function translateInjectables(injectablesIds: Array<InjectableId>): Dependency[] {
-    return injectablesIds.map(function(injectableId: string) {
-      const injectable = properties.injectableDictionnay[injectableId];
-
-      if (!injectable) {
-        throwNewError(`"${injectableId}" is not declared as injectable in the "${properties.tag}" node.`);
-      }
-
-      const dependencies = new Array<Dependency>();
-
-      if (injectable.injectablesIds().length) {
-        dependencies.push(...translateInjectables(injectable.injectablesIds()));
-      }
-
-      return injectable.dataAccessor()(...dependencies);
-    });
-  }
-
-  function runDataAccessor<D>(_dataAccessor: DataAccessor<D>): any {
-    if (_dataAccessor) {
-      const injectablesIds: Array<InjectableId> = fnArgumentsNames(_dataAccessor);
-
-      const computedData: any = _dataAccessor(...translateInjectables(injectablesIds));
-
-      if (!computedData) {
-        return throwNewError('Node data setting must always return an object.');
-      }
-
-      return computedData;
-    } else {
-      return {};
-    }
-  }
-
   let data: N;
 
   const node: Node<N> = {
@@ -72,10 +31,10 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
 
     __data(): N {
       if (!data) {
-        data = new Proxy(runDataAccessor(_dataAccessor), {
+        data = new Proxy(runDataAccessor(this, _dataAccessor), {
           set(target: N, property: string, value: any) {
             target[property] = value;
-            renderNode(this);
+            renderNode(node);
             return true;
           }
         });
@@ -103,16 +62,17 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     },
 
     __setTemplateInjectionUsing(value = true): void {
-      properties.components.forEach(function(component: Component): void {
-        component.__setTemplateInjectionUsing(value);
-      });
       properties.templateInjectionUsing = value;
+
+      transferTemplateInjectionUsingValueToChildComponents(this);
     },
 
     registerComponent(component: Component): Node<N> {
       properties.components = [...properties.components, component];
 
       transferInjectablesToChildComponents(this);
+
+      transferTemplateInjectionUsingValueToChildComponents(this);
 
       return this;
     },
@@ -135,10 +95,6 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     },
 
     setTemplate(template: string): Node<N> {
-      if (!properties.templateInjectionUsing) {
-        throwNewError('You have to enable template injection to use template setting.');
-      }
-
       if (!template) {
         throwNewError('Please define a correct template.');
       }

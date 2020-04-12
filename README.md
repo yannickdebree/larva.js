@@ -4,9 +4,9 @@
 
 A(n other...) framework to develop web applications in Javascript.
 
-## Documentation
+## Getting started
 
-[Read the documentation here.](https://github.com/yannickdebree/snake.js/wiki)
+[Read the tutorial here.](https://github.com/yannickdebree/snake.js/wiki)
 
 ## Philosophy
 
