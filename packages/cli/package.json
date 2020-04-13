@@ -1,0 +1,43 @@
+{
+  "name": "@snake.js/cli",
+  "version": "1.0.0",
+  "description": "Snake.js - cli package",
+  "license": "MIT",
+  "main": "lib/main.js",
+  "author": {
+    "name": "Yannick Debrée",
+    "email": "debree.yannickdebree13@gmail.com",
+    "url": "https://it.yannickdebree.com"
+  },
+  "bin": {
+    "snake": "lib/main.js"
+  },
+  "repository": {
+    "url": "https://github.com/yannickdebree/snake.js",
+    "directory": "packages/cli"
+  },
+  "engines": {
+    "node": ">=10.16.0"
+  },
+  "keywords": [
+    "snake.js",
+    "cli"
+  ],
+  "scripts": {
+    "start:old": "NODE_ENV=development webpack-dev-server --no-inline --hot",
+    "build:old": "NODE_ENV=production webpack"
+  },
+  "dependencies": {
+    "@types/node": "^13.11.1",
+    "@types/webpack": "4.1.4",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

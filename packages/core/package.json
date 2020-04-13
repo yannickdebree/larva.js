@@ -14,20 +14,11 @@
     "url": "https://github.com/yannickdebree/snake.js",
     "directory": "packages/core"
   },
-  "keywords": [
-    "snake.js",
-    "core"
-  ],
   "engines": {
     "node": ">=10.16.0"
   },
-  "scripts": {
-    "build:watch": "tsc --watch && webpack --config webpack/webpack.development.config.js",
-    "build": "tsc && webpack --config webpack/webpack.production.config.js "
-  },
-  "devDependencies": {
-    "declaration-bundler-webpack-plugin": "^1.0.3",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
-  }
+  "keywords": [
+    "snake.js",
+    "core"
+  ]
 }

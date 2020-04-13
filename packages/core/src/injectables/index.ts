@@ -1,2 +1,2 @@
-export * from './_create-injectable';
-export * from './_types';
+export * from './create-injectable';
+export * from './types';

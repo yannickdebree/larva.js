@@ -1,2 +1,2 @@
-export * from './_snake';
-export * from './_types';
+export * from './snake';
+export * from './types';

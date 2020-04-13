@@ -1,5 +1,3 @@
-const DeclarationBundlerPlugin = require('./plugins/declaration-bundler-plugin');
-
 const path = require('path');
 
 module.exports = {
@@ -14,15 +12,9 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'core.js',
+    filename: 'core.min.js',
     path: path.resolve(__dirname, '../dist')
   },
-  plugins: [
-    new DeclarationBundlerPlugin({
-      moduleName: 'snake.js.core',
-      out: 'core.d.ts'
-    })
-  ],
   resolve: {
     extensions: ['.ts']
   }

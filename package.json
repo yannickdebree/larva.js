@@ -5,12 +5,17 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:core": "webpack-dev-server --config packages/core/webpack.config.js",
-    "build:core:watch": "gulp build:core:watch",
-    "format": "prettier --write \"**/*.ts\" \"**/*.js\"",
+    "build:core:old": "webpack-dev-server --config packages/core/webpack.config.js",
+    "build:core:watch:old": "gulp build:core:watch",
+    "serve:integrations:old": "http-server integrations",
+    "start:old": "concurrently \"npm run serve:integrations\" \"npm run build:core:watch\"",
+    "build:core": "tsc --build packages/core/tsconfig.json && webpack --config packages/core/webpack/webpack.prod.config.js",
+    "build:core:watch": "concurrently \"tsc --build packages/core/tsconfig.json --watch\" \"webpack --config packages/core/webpack/webpack.dev.config.js\"",
+    "prebuild:cli": "cd packages/cli && yarn",
+    "build:cli": "tsc --build packages/cli/tsconfig.json",
+    "build:cli:watch": "yarn build:cli -- --watch",
+    "format": "prettier --write \"**/*.ts\"",
     "lint": "eslint .",
-    "serve:integrations": "http-server integrations",
-    "start": "concurrently \"npm run serve:integrations\" \"npm run build:core:watch\"",
     "test": "mocha -r ts-node/register packages/**/*.spec.ts"
   },
   "devDependencies": {
@@ -36,7 +41,6 @@
     "watchify": "^3.11.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
     "window": "^4.2.7"
   }
 }

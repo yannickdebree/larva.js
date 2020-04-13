@@ -1,2 +1,2 @@
-export * from './_create-component';
-export * from './_types';
+export * from './create-component';
+export * from './types';
