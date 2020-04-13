@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Snake.js - core package",
   "license": "MIT",
-  "main": "dist/core.js",
-  "typings": "dist/core.types.d.ts",
+  "main": "lib/main.js",
+  "typings": "lib/main.d.ts",
   "author": {
     "name": "Yannick Debrée",
     "email": "debree.yannickdebree13@gmail.com",
@@ -22,8 +22,8 @@
     "node": ">=10.16.0"
   },
   "scripts": {
-    "build:watch": "webpack --config webpack/webpack.development.config.js",
-    "build": "webpack --config webpack/webpack.production.config.js "
+    "build:watch": "tsc --watch && webpack --config webpack/webpack.development.config.js",
+    "build": "tsc && webpack --config webpack/webpack.production.config.js "
   },
   "devDependencies": {
     "declaration-bundler-webpack-plugin": "^1.0.3",

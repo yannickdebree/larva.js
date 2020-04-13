@@ -1,7 +1,7 @@
-import { Component } from '@_components';
-import { Injectable, InjectableDictionnay, InjectableId } from '@_injectables';
-import { Dependency, throwNewError } from '@_kernel';
-import { Node } from '@_nodes';
+import { Component } from '../components';
+import { Injectable, InjectableDictionnay, InjectableId } from '../injectables';
+import { Dependency, throwNewError } from '../kernel';
+import { Node } from '../nodes';
 
 export function transferInjectablesToChildComponents(node: Node): void {
   (node.__property('components') as Array<Component>).forEach(function(component: Component): void {

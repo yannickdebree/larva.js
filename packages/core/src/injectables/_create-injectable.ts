@@ -1,6 +1,6 @@
-import { DataAccessor } from '@_kernel';
-import { fnArgumentsNames, tryAndCatchOrReturn } from '@_shared';
-import { Injectable, InjectableId } from '@_injectables';
+import { DataAccessor } from '../kernel';
+import { fnArgumentsNames, tryAndCatchOrReturn } from '../shared';
+import { Injectable, InjectableId } from '../injectables';
 
 export function createInjectable<I>(id: InjectableId, dataAccessor: DataAccessor<I>): Injectable<I> {
   return tryAndCatchOrReturn(function() {

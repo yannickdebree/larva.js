@@ -1,11 +1,11 @@
-import { DataAccessor, throwNewError } from '@_kernel';
-import { createNode } from '@_nodes';
-import { tryAndCatchOrReturn } from '@_shared';
-import { Snake } from '@_snake';
+import { DataAccessor, throwNewError } from '../kernel';
+import { createNode } from '../nodes';
+import { tryAndCatchOrReturn } from '../shared';
+import { Snake } from '../snake';
 
 export function snake<S>(_selector: string, _data?: DataAccessor<S>): Snake<S> {
   return tryAndCatchOrReturn(function() {
-    if (!globalThis.window) {
+    if (!window) {
       throwNewError(`Window object is unknowned.`);
     }
 

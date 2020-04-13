@@ -1,4 +1,4 @@
-import { DataAccessor } from '@_kernel';
+import { DataAccessor } from '../kernel';
 
 export type InjectableId = string;
 

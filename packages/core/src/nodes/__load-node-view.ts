@@ -1,6 +1,6 @@
-import { Component } from '@_components';
-import { snakeComponentCommonAttribute } from '@_kernel';
-import { Node } from '@_nodes';
+import { Component } from '../components';
+import { snakeComponentCommonAttribute } from '../kernel';
+import { Node } from '../nodes';
 import { runDomElementInjection } from './__dom-elements';
 import { runOutputsWatching } from './__run-outputs-watching';
 import { renderNode } from './__render-node';

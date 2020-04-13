@@ -1,8 +1,8 @@
-import { Component } from '@_components';
-import { Injectable, InjectableDictionnay } from '@_injectables';
-import { DataAccessor, templateBindingRgx, throwNewError } from '@_kernel';
-import { Node, NodeProperties, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '@_nodes';
-import { uniqueId } from '@_shared';
+import { Component } from '../components';
+import { Injectable, InjectableDictionnay } from '../injectables';
+import { DataAccessor, templateBindingRgx, throwNewError } from '../kernel';
+import { Node, NodeProperties, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../nodes';
+import { uniqueId } from '../shared';
 import { transferInjectablesToChildComponents } from './__injectables';
 import { renderNode } from './__render-node';
 import { runDataAccessor } from './__run-data-accessor';

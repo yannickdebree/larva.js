@@ -43,37 +43,45 @@ var DeclarationBundlerPlugin = (function() {
   DeclarationBundlerPlugin.prototype.generateCombinedDeclaration = function(declarationFiles) {
     var declarations = '';
     for (var fileName in declarationFiles) {
-      var declarationFile = declarationFiles[fileName];
-      var data = declarationFile._value || declarationFile.source(); // FIXED!
+      // Merge only 'types' and main files
+      if (
+        /types/.test(fileName) ||
+        /create-component/.test(fileName) ||
+        /create-injectable/.test(fileName) ||
+        /snake/.test(fileName)
+      ) {
+        var declarationFile = declarationFiles[fileName];
+        var data = declarationFile._value || declarationFile.source(); // FIXED!
 
-      var lines = data.split('\n');
+        var lines = data.split('\n');
 
-      var i = lines.length;
-      while (i--) {
-        var line = lines[i];
-        //exclude empty lines
-        var excludeLine = line == '';
-        //exclude export statements
-        excludeLine = excludeLine || line.indexOf('export =') !== -1;
-        //exclude import statements
-        excludeLine = excludeLine || /import ([a-z0-9A-Z_-]+) = require\(/.test(line);
-        //if defined, check for excluded references
-        if (!excludeLine && this.excludedReferences && line.indexOf('<reference') !== -1) {
-          excludeLine = this.excludedReferences.some(function(reference) {
-            return line.indexOf(reference) !== -1;
-          });
-        }
-        if (excludeLine) {
-          lines.splice(i, 1);
-        } else {
-          if (line.indexOf('declare ') !== -1) {
-            lines[i] = line.replace('declare ', '');
+        var i = lines.length;
+        while (i--) {
+          var line = lines[i];
+          //exclude empty lines
+          var excludeLine = line == '';
+          //exclude export statements
+          excludeLine = excludeLine || line.indexOf('export =') !== -1 || line.indexOf('export *') !== -1;
+          //exclude import statements
+          excludeLine = excludeLine || /import/.test(line);
+          //if defined, check for excluded references
+          if (!excludeLine && this.excludedReferences && line.indexOf('<reference') !== -1) {
+            excludeLine = this.excludedReferences.some(function(reference) {
+              return line.indexOf(reference) !== -1;
+            });
           }
-          //add tab
-          lines[i] = '\t' + lines[i];
+          if (excludeLine) {
+            lines.splice(i, 1);
+          } else {
+            if (line.indexOf('declare ') !== -1) {
+              lines[i] = line.replace('declare ', '');
+            }
+            //add tab
+            lines[i] = '\t' + lines[i];
+          }
         }
+        declarations += lines.join('\n') + '\n\n';
       }
-      declarations += lines.join('\n') + '\n\n';
     }
     var output = 'declare module ' + this.moduleName + '\n{\n' + declarations + '}';
     return output;

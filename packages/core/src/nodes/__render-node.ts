@@ -1,5 +1,5 @@
-import { snakeComponentCommonAttribute, throwNewError } from '@_kernel';
-import { Node } from '@_nodes';
+import { snakeComponentCommonAttribute, throwNewError } from '../kernel';
+import { Node } from '../nodes';
 import { injectContentsToBindedDomElements } from './__dom-elements';
 import { loadNodeView } from './__load-node-view';
 

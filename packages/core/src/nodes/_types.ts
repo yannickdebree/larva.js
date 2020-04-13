@@ -1,5 +1,5 @@
-import { Component } from '@_components';
-import { Injectable, InjectableDictionnay } from '@_injectables';
+import { Component } from '../components';
+import { Injectable, InjectableDictionnay } from '../injectables';
 
 export interface NodePropertiesInput {
   domElement: Element | undefined;

@@ -1,6 +1,6 @@
-import { DataAccessor } from '@_kernel';
-import { createNode } from '@_nodes';
-import { tryAndCatchOrReturn } from '@_shared';
+import { DataAccessor } from '../kernel';
+import { createNode } from '../nodes';
+import { tryAndCatchOrReturn } from '../shared';
 import { Component } from './_types';
 import { useNodeAsWebComponent } from './__use-node-as-web-component';
 

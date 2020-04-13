@@ -1,4 +1,4 @@
-import { Node } from '@_nodes';
+import { Node } from '../nodes';
 
 export function useNodeAsWebComponent(node: Node): void {
   window.customElements.define(

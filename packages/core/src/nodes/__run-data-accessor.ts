@@ -1,7 +1,7 @@
-import { InjectableId } from '@_injectables';
-import { DataAccessor, throwNewError } from '@_kernel';
-import { Node } from '@_nodes';
-import { fnArgumentsNames } from '@_shared';
+import { InjectableId } from '../injectables';
+import { DataAccessor, throwNewError } from '../kernel';
+import { Node } from '../nodes';
+import { fnArgumentsNames } from '../shared';
 import { translateInjectables } from './__injectables';
 
 export function runDataAccessor<D = any>(node: Node<D>, _dataAccessor?: DataAccessor<D>): D | any {

@@ -1,5 +1,5 @@
-import { EventTypes, runCodeBindingObject, throwNewError } from '@_kernel';
-import { Node } from '@_nodes';
+import { EventTypes, runCodeBindingObject, throwNewError } from '../kernel';
+import { Node } from '../nodes';
 
 export function runOutputsWatching(node: Node, nodeDomElement: Element): void {
   Object.keys(EventTypes).forEach(function(eventType: string): void {

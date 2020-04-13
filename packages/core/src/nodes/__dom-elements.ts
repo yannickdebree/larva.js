@@ -1,5 +1,5 @@
-import { bindingMarkRgx, findCommentMarkedByUid, runCodeBindingObject } from '@_kernel';
-import { Node } from '@_nodes';
+import { bindingMarkRgx, findCommentMarkedByUid, runCodeBindingObject } from '../kernel';
+import { Node } from '../nodes';
 
 export function runDomElementInjection(node: Node, nodeDomElement: Element): void {
   const markedBindedPoints = (node.__property('scriptedTemplate') as string).match(bindingMarkRgx()) || [];

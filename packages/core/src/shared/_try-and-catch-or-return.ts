@@ -1,4 +1,4 @@
-import { warning } from '@_kernel';
+import { warning } from '../kernel';
 
 export function tryAndCatchOrReturn<T>(fn: () => T): T {
   try {
