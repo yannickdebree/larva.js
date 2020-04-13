@@ -45,45 +45,47 @@ function main() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 10, , 11]);
+                    _a.trys.push([0, 11, , 12]);
                     command = process.argv[2];
                     if (!commands_1.buildRgx().test(command)) return [3 /*break*/, 1];
                     commands_1.build();
-                    return [3 /*break*/, 9];
+                    return [3 /*break*/, 10];
                 case 1:
                     if (!commands_1.createRgx().test(command)) return [3 /*break*/, 2];
                     commands_1.create();
-                    return [3 /*break*/, 9];
+                    return [3 /*break*/, 10];
                 case 2:
                     if (!commands_1.helpRgx().test(command)) return [3 /*break*/, 4];
                     return [4 /*yield*/, commands_1.help()];
                 case 3:
                     _a.sent();
-                    return [3 /*break*/, 9];
+                    return [3 /*break*/, 10];
                 case 4:
-                    if (!commands_1.serveRgx().test(command)) return [3 /*break*/, 5];
-                    commands_1.serve();
-                    return [3 /*break*/, 9];
+                    if (!commands_1.serveRgx().test(command)) return [3 /*break*/, 6];
+                    return [4 /*yield*/, commands_1.serve()];
                 case 5:
-                    if (!commands_1.versionRgx().test(command)) return [3 /*break*/, 7];
-                    return [4 /*yield*/, commands_1.version()];
-                case 6:
                     _a.sent();
-                    return [3 /*break*/, 9];
+                    return [3 /*break*/, 10];
+                case 6:
+                    if (!commands_1.versionRgx().test(command)) return [3 /*break*/, 8];
+                    return [4 /*yield*/, commands_1.version()];
                 case 7:
+                    _a.sent();
+                    return [3 /*break*/, 10];
+                case 8:
                     if (command) {
                         kernel_1.info("Unknow command : " + command);
                     }
                     return [4 /*yield*/, commands_1.help()];
-                case 8:
+                case 9:
                     _a.sent();
-                    _a.label = 9;
-                case 9: return [3 /*break*/, 11];
-                case 10:
+                    _a.label = 10;
+                case 10: return [3 /*break*/, 12];
+                case 11:
                     err_1 = _a.sent();
                     kernel_1.warn(err_1);
-                    return [3 /*break*/, 11];
-                case 11: return [2 /*return*/];
+                    return [3 /*break*/, 12];
+                case 12: return [2 /*return*/];
             }
         });
     });

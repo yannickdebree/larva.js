@@ -1,0 +1,5 @@
+# SCM
+.git
+
+# Dependencies
+node_modules

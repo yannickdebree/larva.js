@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
+    "allowJs": true,
     "module": "CommonJS",
     "noImplicitAny": false,
     "outDir": "./lib",

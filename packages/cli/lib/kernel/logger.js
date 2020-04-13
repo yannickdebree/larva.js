@@ -4,11 +4,11 @@ function info(message) {
     console.log(message);
 }
 exports.info = info;
-function warn(message) {
-    throw new Error(message);
+function warn(error) {
+    throw new Error(error);
 }
 exports.warn = warn;
 function clear() {
-    console.clear();
+    process.stdout.write('\x1Bc');
 }
 exports.clear = clear;

@@ -14,7 +14,7 @@ async function main(): Promise<void> {
     } else if (helpRgx().test(command)) {
       await help();
     } else if (serveRgx().test(command)) {
-      serve();
+      await serve();
     } else if (versionRgx().test(command)) {
       await version();
     } else {
