@@ -10,13 +10,13 @@ export async function help(): Promise<void> {
 
   info(`Snake.js CLI version ${packageFile['version']} guide :
 
-build :                         Build a Snake.js application.
-create, c :                     Generate :
-  - application, app              - a new Snake.js application.
-  - component, c                  - a new component for an existing Snake.js application.
-  - injectable, i                 - a new injectable for an existing Snake.js application.
-help, -h, --help                Show Snake.js CLI guide.
-serve                           Run a Snake.js application in development mode.
-version, -v, --version          Display @snake.js/cli package version.
+build :                             Build a Snake.js application.
+create, c :                         Generate :
+  - application, app [name]           - a new Snake.js application.
+  - component, c [(path/)name]        - a new component for an existing Snake.js application.
+  - injectable, i [(path/)name]       - a new injectable for an existing Snake.js application.
+help, -h, --help                    Show Snake.js CLI guide.
+serve                               Run a Snake.js application in development mode.
+version, -v, --version              Display @snake.js/cli package version.
 `);
 }
