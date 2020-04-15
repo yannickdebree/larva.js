@@ -1,16 +1,17 @@
 import { Component } from '../components';
 import { Injectable, InjectableDictionnay } from '../injectables';
 import { DataAccessor, templateBindingRgx, throwNewError } from '../kernel';
-import { Node, NodeProperties, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../nodes';
+import { NodeProperties, NodePropertiesInput, NodePropertyKey, NodePropertyValue } from '../nodes';
 import { uniqueId } from '../shared';
 import {
-  transferInjectablesToChildComponents,
+  renderNode,
   runDataAccessor,
-  transferTemplateInjectionUsingValueToChildComponents,
-  renderNode
+  transferInjectablesToChildComponents,
+  transferTemplateInjectionUsingValueToChildComponents
 } from './partials';
+import { Node } from './types';
 
-export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<N>): Node<N> {
+export function createNode<D = any>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<D>): Node<D> {
   const properties: NodeProperties = {
     ..._properties,
     bindedDomElements: {},
@@ -22,17 +23,17 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     templateInjectionUsing: true
   };
 
-  let data: N;
+  let data: D;
 
-  const node: Node<N> = {
+  const node: Node<D> = {
     __closeOneDomElementsInjectionOperation(): void {
       properties.domElementsInjectionOperationTread--;
     },
 
-    __data(): N {
+    __data(): D {
       if (!data) {
         data = new Proxy(runDataAccessor(this, _dataAccessor), {
-          set(target: N, property: string, value: any) {
+          set(target: D, property: string, value: any) {
             target[property] = value;
             renderNode(node);
             return true;
@@ -67,7 +68,7 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
       transferTemplateInjectionUsingValueToChildComponents(this);
     },
 
-    registerComponent(component: Component): Node<N> {
+    registerComponent(component: Component): T {
       properties.components = [...properties.components, component];
 
       transferInjectablesToChildComponents(this);
@@ -77,14 +78,14 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
       return this;
     },
 
-    registerComponents(...components: Array<Component>): Node<N> {
+    registerComponents(...components: Array<Component>): T {
       components.forEach((component: Component) => {
         this.registerComponent(component);
       });
       return this;
     },
 
-    registerInjectable(injectable: Injectable): Node<N> {
+    registerInjectable(injectable: Injectable): T {
       const patch: InjectableDictionnay = {};
 
       patch[injectable.id()] = injectable;
@@ -96,19 +97,19 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
       return this;
     },
 
-    registerInjectables(...injectables: Array<Injectable>): Node<N> {
+    registerInjectables(...injectables: Array<Injectable>): T {
       injectables.forEach((injectable: Injectable) => {
         this.registerInjectable(injectable);
       });
       return this;
     },
 
-    render(): Node<N> {
+    render(): T {
       renderNode(this);
       return this;
     },
 
-    setTemplate(template: string): Node<N> {
+    setTemplate(template: string): T {
       if (!template) {
         throwNewError('Please define a correct template.');
       }
@@ -137,5 +138,5 @@ export function createNode<N>(_properties: NodePropertiesInput, _dataAccessor?: 
     }
   };
 
-  return node;
+  return node as T;
 }

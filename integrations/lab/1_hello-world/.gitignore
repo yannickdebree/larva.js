@@ -1,0 +1,8 @@
+# SCM
+.git
+
+# Dependencies
+node_modules
+
+# Build
+dist

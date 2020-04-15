@@ -18,9 +18,5 @@ export function fnArgumentsNames(fn: Function): Array<string> {
       .replace(/^[^(]*[(]/, '')
       .replace(/=[^,]+/g, '');
   }
-  if (params !== '') {
-    return params.split(',');
-  } else {
-    return [];
-  }
+  return params ? params.split(',') : [];
 }

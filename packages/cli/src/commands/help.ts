@@ -1,4 +1,5 @@
-import { info, getPackageFile } from '../kernel';
+import { getPackageFile } from '../shared';
+import { info } from '../kernel';
 
 export function helpRgx() {
   return /^(help|-h|--help)$/gm;

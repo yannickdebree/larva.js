@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "snake": "snake",
+    "start": "snake serve",
+    "build": "snake build"
+  },
+  "devDependencies": {
+    "@snake.js/cli": "../../../packages/cli/",
+    "@snake.js/core": "../../../packages/core/"
+  }
+}

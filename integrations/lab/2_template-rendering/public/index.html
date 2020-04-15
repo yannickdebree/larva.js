@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Snake.js - Integrations</title>
+  </head>
+
+  <body>
+    <div id="snake-app">
+      <div snake-id="counter">
+        <h2>Counter</h2>
+        <button s-on-click="more($event, count)">+</button>
+        {{ 2 * count + 1 }}
+        <button s-on-click="count--">-</button>
+      </div>
+      <div snake-id="form">
+        <h2>Dynamic form</h2>
+        <input type="text" s-on-keyup="onKeyUp($event)" />
+        <p>{{ term }}</p>
+      </div>
+    </div>
+
+    <noscript>Javascript disabled.</noscript>
+  </body>
+</html>

@@ -1,12 +1,12 @@
 import { DataAccessor } from '../kernel';
 import { createNode } from '../nodes';
 import { tryAndCatchOrReturn } from '../shared';
-import { Component } from './types';
 import { useNodeAsWebComponent } from './partials';
+import { Component } from './types';
 
-export function createComponent<C>(tag: string, dataAccessor?: DataAccessor<C>): Component<C> {
+export function createComponent<D = any>(tag: string, dataAccessor?: DataAccessor<D>): Component<D> {
   return tryAndCatchOrReturn(function() {
-    const node = createNode(
+    const node = createNode<Component<D>, D>(
       {
         domElement: undefined,
         tag,
@@ -15,7 +15,7 @@ export function createComponent<C>(tag: string, dataAccessor?: DataAccessor<C>):
       dataAccessor
     );
 
-    const component: Component<C> = {
+    const component: Component<D> = {
       ...node,
 
       useAsWebComponent(): void {

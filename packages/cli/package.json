@@ -23,10 +23,6 @@
     "snake.js",
     "cli"
   ],
-  "scripts": {
-    "start:old": "NODE_ENV=development webpack-dev-server --no-inline --hot",
-    "build:old": "NODE_ENV=production webpack"
-  },
   "dependencies": {
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",

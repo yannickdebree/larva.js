@@ -8,9 +8,9 @@ async function main(): Promise<void> {
     const command = process.argv[2];
 
     if (buildRgx().test(command)) {
-      build();
+      await build();
     } else if (createRgx().test(command)) {
-      create();
+      await create();
     } else if (helpRgx().test(command)) {
       await help();
     } else if (serveRgx().test(command)) {

@@ -20,17 +20,17 @@ export interface NodeProperties extends NodePropertiesInput {
 export type NodePropertyKey = keyof NodeProperties;
 export type NodePropertyValue = NodeProperties[NodePropertyKey];
 
-export interface Node<N = any> {
+export interface Node<D = any> {
   __closeOneDomElementsInjectionOperation(): void;
-  __data(): N;
+  __data(): D;
   __injectContentToBindedDomElement(content: string, uid: string): void;
   __property(key: NodePropertyKey): NodeProperties[NodePropertyKey];
   __setTemplateInjectionUsing(value: boolean): void;
   __setViewAsLoaded(): void;
-  registerComponent(component: Component): Node<N>;
-  registerComponents(...components: Array<Component>): Node<N>;
-  registerInjectable(injectable: Injectable): Node<N>;
-  registerInjectables(...injectables: Array<Injectable>): Node<N>;
-  render(): Node<N>;
-  setTemplate(template: string): Node<N>;
+  registerComponent(component: Component): Node<D>;
+  registerComponents(...components: Array<Component>): Node<D>;
+  registerInjectable(injectable: Injectable): Node<D>;
+  registerInjectables(...injectables: Array<Injectable>): Node<D>;
+  render(): Node<D>;
+  setTemplate(template: string): Node<D>;
 }

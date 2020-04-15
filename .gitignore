@@ -1,3 +1,7 @@
+# Build
+dist
+lib
+
 # Dependencies
 node_modules
 package-lock.json

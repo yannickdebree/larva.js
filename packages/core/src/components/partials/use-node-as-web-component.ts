@@ -1,8 +1,8 @@
-import { Node } from '../../nodes';
+import { Component } from 'components/types';
 
-export function useNodeAsWebComponent(node: Node): void {
+export function useNodeAsWebComponent(component: Component): void {
   window.customElements.define(
-    `s-${node.__property('tag')}`,
+    `s-${component.__property('tag')}`,
     class extends HTMLElement {
       constructor() {
         super();

@@ -2,7 +2,7 @@ import { DataAccessor } from '../kernel';
 import { fnArgumentsNames, tryAndCatchOrReturn } from '../shared';
 import { Injectable, InjectableId } from './types';
 
-export function createInjectable<I>(id: InjectableId, dataAccessor: DataAccessor<I>): Injectable<I> {
+export function createInjectable<D>(id: InjectableId, dataAccessor: DataAccessor<D>): Injectable<D> {
   return tryAndCatchOrReturn(function() {
     const injectablesIds = new Array<InjectableId>();
 
@@ -14,7 +14,7 @@ export function createInjectable<I>(id: InjectableId, dataAccessor: DataAccessor
       id(): InjectableId {
         return id;
       },
-      dataAccessor(): DataAccessor<I> {
+      dataAccessor(): DataAccessor<D> {
         return dataAccessor;
       },
       injectablesIds(): Array<InjectableId> {
