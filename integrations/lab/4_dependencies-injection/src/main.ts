@@ -1,23 +1,22 @@
 import { snake } from '@snake.js/core';
-import { a, b, c } from './components';
-import {
-  FourthInjectable,
-  myFirstInjectable,
-  myFourthInjectable,
-  mySecondInjectable,
-  myThirdInjectable
-} from './injectables';
+import { componentA } from './components/component-a';
+import { componentB } from './components/component-b';
+import { componentC } from './components/component-c';
+import { injectableA } from './injectables/injectable-a';
+import { injectableB } from './injectables/injectable-b';
+import { injectableC } from './injectables/injectable-c';
+import { InjectableD, injectableD } from './injectables/injectable-d';
 
 interface App {
   message: string;
-  status: 'ok';
+  status: string;
 }
 
-snake<App>('#snake-app', (myFourthInjectable: FourthInjectable) => {
-  return { ...myFourthInjectable };
+snake<App>('#snake-app', (injectableD: InjectableD) => {
+  return { ...injectableD };
 })
-  .registerInjectables(myFirstInjectable, mySecondInjectable, myThirdInjectable, myFourthInjectable)
-  .registerComponents(a, b, c)
+  .registerInjectables(injectableA, injectableB, injectableC, injectableD)
+  .registerComponents(componentA, componentB, componentC)
   .setTemplate(
     `message : {{message}}, status : {{status}}
       <s-a></s-a><s-b></s-b><s-c></s-c>`

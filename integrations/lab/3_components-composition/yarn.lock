@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@snake.js/cli@../../packages/cli/":
+"@snake.js/cli@../../../packages/cli/":
   version "1.0.0"
   dependencies:
     awesome-typescript-loader "^5.2.1"
@@ -13,7 +13,7 @@
     webpack "^4.42.1"
     webpack-dev-server "^3.10.3"
 
-"@snake.js/core@../../packages/core/":
+"@snake.js/core@../../../packages/core/":
   version "1.0.0"
 
 "@types/anymatch@*":

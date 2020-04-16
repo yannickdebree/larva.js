@@ -1,14 +1,14 @@
+import { Node } from '..';
 import { Component } from '../../components';
 import { Injectable, InjectableDictionnay, InjectableId } from '../../injectables';
 import { Dependency, throwNewError } from '../../kernel';
-import { Node } from '..';
 
 export function transferInjectablesToChildComponents(node: Node): void {
   (node.__property('components') as Array<Component>).forEach(function(component: Component): void {
-    Object.values(node.__property('injectableDictionnay') as InjectableDictionnay).forEach(function(
-      injectable: Injectable
-    ) {
-      component.registerInjectable(injectable);
+    const injectableDictionnay = { ...(node.__property('injectableDictionnay') as InjectableDictionnay) };
+
+    Object.keys(injectableDictionnay).forEach((injectableId: InjectableId) => {
+      component.registerInjectable(injectableDictionnay[injectableId]);
     });
   });
 }

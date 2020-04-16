@@ -35,8 +35,6 @@ export function snake<D = any>(_selector: string, _data?: DataAccessor<D>): Snak
       }
     };
 
-    snake.setTemplate('dezfre');
-
     return snake;
   });
 }

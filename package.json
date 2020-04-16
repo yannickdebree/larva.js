@@ -5,7 +5,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "postinstall": "yarn run build",
     "build": "yarn run build:core && yarn build:cli",
+    "build:watch": "concurrently \"yarn run build:core:watch\" \"yarn build:cli:watch\"",
     "build:core": "tsc --build packages/core/tsconfig.json && webpack --config packages/core/webpack/webpack.prod.config.js",
     "build:core:watch": "concurrently \"tsc --build packages/core/tsconfig.json --watch\" \"webpack --config packages/core/webpack/webpack.dev.config.js\"",
     "prebuild:cli": "cd packages/cli && yarn",
@@ -21,6 +23,7 @@
     "eslint": "^6.8.0",
     "mocha": "^7.1.1",
     "prettier": "^1.19.1",
+    "ts-loader": "^7.0.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",

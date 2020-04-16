@@ -11,7 +11,10 @@ import {
 } from './partials';
 import { Node } from './types';
 
-export function createNode<D = any>(_properties: NodePropertiesInput, _dataAccessor?: DataAccessor<D>): Node<D> {
+export function createNode<T extends Node<any, D>, D = any>(
+  _properties: NodePropertiesInput,
+  _dataAccessor?: DataAccessor<D>
+): Node<T, D> {
   const properties: NodeProperties = {
     ..._properties,
     bindedDomElements: {},
@@ -25,7 +28,7 @@ export function createNode<D = any>(_properties: NodePropertiesInput, _dataAcces
 
   let data: D;
 
-  const node: Node<D> = {
+  const node: Node<T, D> = {
     __closeOneDomElementsInjectionOperation(): void {
       properties.domElementsInjectionOperationTread--;
     },
@@ -138,5 +141,5 @@ export function createNode<D = any>(_properties: NodePropertiesInput, _dataAcces
     }
   };
 
-  return node as T;
+  return node;
 }

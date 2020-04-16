@@ -1,10 +1,10 @@
 import { createInjectable } from '@snake.js/core';
 
-export interface FifthInjectable {
+export interface InjectableE {
   showMessage(): void;
 }
 
-export const myFifthInjectable = createInjectable<FifthInjectable>('myFifthInjectable', () => ({
+export const injectableE = createInjectable<InjectableE>('injectableE', () => ({
   showMessage() {
     console.log('Hello world');
   }

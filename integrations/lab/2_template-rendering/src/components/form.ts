@@ -1,11 +1,11 @@
 import { createComponent } from '@snake.js/core';
 
-interface FormComponent {
+interface Form {
   term: string;
   onKeyUp: ($event) => void;
 }
 
-export const form = createComponent<FormComponent>('form', () => ({
+export const form = createComponent<Form>('form', () => ({
   term: '',
   onKeyUp($event) {
     this.term = $event.target.value;

@@ -5,7 +5,7 @@
     "build": "snake build"
   },
   "devDependencies": {
-    "@snake.js/cli": "../../packages/cli/",
-    "@snake.js/core": "../../packages/core/"
+    "@snake.js/cli": "../../../packages/cli/",
+    "@snake.js/core": "../../../packages/core/"
   }
 }
