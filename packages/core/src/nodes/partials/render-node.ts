@@ -1,4 +1,4 @@
-import { snakeComponentCommonAttribute, throwNewError } from '../../kernel';
+import { larvaComponentCommonAttribute, throwNewError } from '../../kernel';
 import { Node } from '../types';
 import { injectContentsToBindedDomElements } from './dom-elements';
 import { loadNodeView } from './load-node-view';
@@ -9,7 +9,7 @@ export function renderNode(_node: Node): void {
   let nodeDomElement = node.__property('domElement') as Element;
 
   if (!nodeDomElement) {
-    nodeDomElement = window.document.querySelector(`[${snakeComponentCommonAttribute()}=${node.__property('tag')}]`);
+    nodeDomElement = window.document.querySelector(`[${larvaComponentCommonAttribute()}=${node.__property('tag')}]`);
   }
 
   if (!nodeDomElement) {

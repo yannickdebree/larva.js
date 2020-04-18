@@ -7,5 +7,5 @@ export function versionRgx() {
 
 export async function version(): Promise<void> {
   const packageFile = await getPackageFile();
-  info(`Snake.js CLI version : ${packageFile['version']}`);
+  info(`Larva.js CLI version : ${packageFile['version']}`);
 }

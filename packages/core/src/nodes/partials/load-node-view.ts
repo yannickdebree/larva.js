@@ -1,5 +1,5 @@
 import { Component } from '../../components';
-import { snakeComponentCommonAttribute } from '../../kernel';
+import { larvaComponentCommonAttribute } from '../../kernel';
 import { Node } from '..';
 import { runDomElementInjection } from './dom-elements';
 import { runOutputsWatching } from './run-outputs-watching';
@@ -9,7 +9,7 @@ export function loadNodeView(node: Node, nodeDomElement: Element) {
   if (!node.__property('templateInjectionUsing')) {
     (node.__property('components') as Array<Component>).forEach(function(component: Component): void {
       nodeDomElement
-        .querySelectorAll(`[${snakeComponentCommonAttribute()}="${component.__property('tag')}"]`)
+        .querySelectorAll(`[${larvaComponentCommonAttribute()}="${component.__property('tag')}"]`)
         .forEach(function(element: Element): void {
           component.setTemplate(element.innerHTML);
 
@@ -24,7 +24,7 @@ export function loadNodeView(node: Node, nodeDomElement: Element) {
 
   (node.__property('components') as Array<Component>).forEach(function(component: Component): void {
     nodeDomElement.querySelectorAll(`s-${component.__property('tag')}`).forEach(function(element: Element): void {
-      element.outerHTML = `<div ${snakeComponentCommonAttribute()}="${component.__property(
+      element.outerHTML = `<div ${larvaComponentCommonAttribute()}="${component.__property(
         'tag'
       )}">${component.__property('scriptedTemplate')}</div>`;
 

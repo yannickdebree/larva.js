@@ -1,5 +1,5 @@
 import { clear, info, warn } from '../kernel';
-import { checkSnakeFile, getWebpackConfig } from '../shared';
+import { checkLarvaFile, getWebpackConfig } from '../shared';
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -9,7 +9,7 @@ export function serveRgx() {
 }
 
 export async function serve(): Promise<void> {
-  await checkSnakeFile();
+  await checkLarvaFile();
 
   const config = getWebpackConfig();
 

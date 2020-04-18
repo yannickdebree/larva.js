@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { info, kamelCase, pascalCase, userPath, warn } from '../../kernel';
-import { checkSnakeFile } from '../../shared';
+import { checkLarvaFile } from '../../shared';
 import { help } from '../help';
 
 export function injectableRgx() {
@@ -9,7 +9,7 @@ export function injectableRgx() {
 }
 
 export async function createInjectable(): Promise<void> {
-  await checkSnakeFile();
+  await checkLarvaFile();
   const inputPath = `${process.argv[4]}.ts`;
   if (!inputPath) {
     info('No path/name for your injectable.');
@@ -22,15 +22,19 @@ export async function createInjectable(): Promise<void> {
 
   const injectablePath = inputPath.replace(`${name}.ts`, '');
 
+  const injectableInterface = `${kamelCase(name)}Injectable`;
+
   await new Promise((_, reject) => {
     fs.mkdir(path.resolve(userPath(), 'src', injectablePath), () => {
       fs.writeFile(
         path.resolve(userPath(), 'src', inputPath),
-        `import { createInjectable } from '@snake.js/core';
+        `import { createInjectable } from '@larva.js/core';
 
-interface ${kamelCase(name)} {}
+interface ${injectableInterface} {}
 
-export const ${pascalCase(name)} = createInjectable<${kamelCase(name)}>('${name}', function(): ${kamelCase(name)} {
+export const ${pascalCase(
+          name
+        )} = createInjectable<${injectableInterface}>('${name}', function(): ${injectableInterface} {
   return {};
 });
 `,

@@ -2,8 +2,8 @@ export function timestamp(): string {
   return `${new Date().getTime().toString()}`;
 }
 
-export function snakeComponentCommonAttribute(): string {
-  return 'snake-id';
+export function larvaComponentCommonAttribute(): string {
+  return 'larva-id';
 }
 
 export function runCodeBindingObject<O>(codeToRun: string, obj: O): unknown {

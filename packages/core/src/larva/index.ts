@@ -1,2 +1,2 @@
-export * from './snake';
+export * from './larva';
 export * from './types';

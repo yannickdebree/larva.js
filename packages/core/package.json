@@ -1,7 +1,7 @@
 {
-  "name": "@snake.js/core",
-  "version": "1.0.0",
-  "description": "Snake.js - core package",
+  "name": "@larva.js/core",
+  "version": "1.0.2",
+  "description": "Larva.js - core package",
   "license": "MIT",
   "main": "lib/main.js",
   "typings": "lib/main.d.ts",
@@ -11,14 +11,14 @@
     "url": "https://it.yannickdebree.com"
   },
   "repository": {
-    "url": "https://github.com/yannickdebree/snake.js",
+    "url": "https://github.com/yannickdebree/larva.js",
     "directory": "packages/core"
   },
   "engines": {
     "node": ">=10.16.0"
   },
   "keywords": [
-    "snake.js",
+    "larva.js",
     "core"
   ]
 }

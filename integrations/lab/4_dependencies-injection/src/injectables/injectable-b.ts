@@ -1,4 +1,4 @@
-import { createInjectable } from '@snake.js/core';
+import { createInjectable } from '@larva.js/core';
 import { InjectableA } from './injectable-a';
 
 export interface InjectableB {

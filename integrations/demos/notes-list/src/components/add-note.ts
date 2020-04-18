@@ -1,5 +1,5 @@
-import { createComponent } from '@snake.js/core';
-import { Output } from '@snake.js/core/lib/nodes';
+import { createComponent } from '@larva.js/core';
+import { Output } from '@larva.js/core/lib/nodes';
 
 interface Note {
   id?: number;

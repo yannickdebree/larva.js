@@ -1,7 +1,7 @@
 {
-  "name": "@snake.js/srcs",
+  "name": "@larva.js/srcs",
   "version": "1.0.0",
-  "repository": "https://github.com/yannickdebree/snake.js",
+  "repository": "https://github.com/yannickdebree/larva.js",
   "license": "MIT",
   "private": true,
   "scripts": {

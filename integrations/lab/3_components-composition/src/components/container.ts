@@ -1,4 +1,4 @@
-import { createComponent } from '@snake.js/core';
+import { createComponent } from '@larva.js/core';
 import { button } from './button';
 
 export const container = createComponent('container')

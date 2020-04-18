@@ -1,5 +1,5 @@
-# @snake.js/cli
+# @larva.js/cli
 
-The sources for this package are in the main [Snake.js](https://github.com/yannickdebree/snake.js) repository.
+The sources for this package are in the main [Larva.js](https://github.com/yannickdebree/larva.js) repository.
 
 License: MIT

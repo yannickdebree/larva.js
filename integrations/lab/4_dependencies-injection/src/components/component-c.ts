@@ -1,4 +1,4 @@
-import { createComponent } from '@snake.js/core';
+import { createComponent } from '@larva.js/core';
 import { InjectableE, injectableE } from '../injectables/injectable-e';
 
 interface ComponentC {

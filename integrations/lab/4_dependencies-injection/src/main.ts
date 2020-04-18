@@ -1,4 +1,4 @@
-import { snake } from '@snake.js/core';
+import { larva } from '@larva.js/core';
 import { componentA } from './components/component-a';
 import { componentB } from './components/component-b';
 import { componentC } from './components/component-c';
@@ -12,7 +12,7 @@ interface App {
   status: string;
 }
 
-snake<App>('#snake-app', (injectableD: InjectableD) => {
+larva<App>('#larva-app', (injectableD: InjectableD) => {
   return { ...injectableD };
 })
   .registerInjectables(injectableA, injectableB, injectableC, injectableD)

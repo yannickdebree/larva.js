@@ -1,3 +1,3 @@
-import { snake } from '@snake.js/core';
+import { larva } from '@larva.js/core';
 
-snake('#snake-app').render();
+larva('#larva-app').render();

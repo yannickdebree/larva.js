@@ -1,7 +1,7 @@
 {
-  "name": "@snake.js/cli",
+  "name": "@larva.js/cli",
   "version": "1.0.0",
-  "description": "Snake.js - cli package",
+  "description": "Larva.js - cli package",
   "license": "MIT",
   "main": "lib/main.js",
   "author": {
@@ -10,17 +10,17 @@
     "url": "https://it.yannickdebree.com"
   },
   "bin": {
-    "snake": "lib/main.js"
+    "larva": "lib/main.js"
   },
   "repository": {
-    "url": "https://github.com/yannickdebree/snake.js",
+    "url": "https://github.com/yannickdebree/larva.js",
     "directory": "packages/cli"
   },
   "engines": {
     "node": ">=10.16.0"
   },
   "keywords": [
-    "snake.js",
+    "larva.js",
     "cli"
   ],
   "dependencies": {

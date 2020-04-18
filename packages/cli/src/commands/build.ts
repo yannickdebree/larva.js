@@ -1,5 +1,5 @@
 import { info, warn } from '../kernel';
-import { checkSnakeFile, getWebpackConfig } from '../shared';
+import { checkLarvaFile, getWebpackConfig } from '../shared';
 const webpack = require('webpack');
 
 export function buildRgx() {
@@ -7,7 +7,7 @@ export function buildRgx() {
 }
 
 export async function build(): Promise<void> {
-  await checkSnakeFile();
+  await checkLarvaFile();
 
   const config = getWebpackConfig({ mode: 'production' });
 

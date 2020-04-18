@@ -1,7 +1,7 @@
-import { snake } from '@snake.js/core';
+import { larva } from '@larva.js/core';
 import { addNote } from './components/add-note';
 
-snake('#snake-app')
+larva('#larva-app')
   .registerComponents(addNote)
   .setTemplate(
     `<h1>Add note</h1>
