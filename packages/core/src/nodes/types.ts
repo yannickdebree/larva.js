@@ -1,6 +1,14 @@
 import { Component } from '../components';
 import { Injectable, InjectableDictionnay } from '../injectables';
 
+export interface Input {
+  get(key: string): any;
+}
+
+export interface Output {
+  emit(key: string, value: any): void;
+}
+
 export interface NodePropertiesInput {
   domElement: Element | undefined;
   scriptedTemplate: string;

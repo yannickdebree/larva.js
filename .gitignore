@@ -8,8 +8,3 @@ package-lock.json
 
 # IDE
 .vscode
-
-# Tools
-makefile
-Makefile
-Dockerfile

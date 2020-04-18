@@ -1,9 +1,9 @@
 import { snakeComponentCommonAttribute, throwNewError } from '../../kernel';
-import { Node } from '..';
+import { Node } from '../types';
 import { injectContentsToBindedDomElements } from './dom-elements';
 import { loadNodeView } from './load-node-view';
 
-export function renderNode<T>(_node: Node<T>): void {
+export function renderNode(_node: Node): void {
   const node = { ..._node };
 
   let nodeDomElement = node.__property('domElement') as Element;

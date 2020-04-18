@@ -5,7 +5,7 @@ export interface InjectableE {
 }
 
 export const injectableE = createInjectable<InjectableE>('injectableE', () => ({
-  showMessage() {
+  showMessage(): void {
     console.log('Hello world');
   }
 }));

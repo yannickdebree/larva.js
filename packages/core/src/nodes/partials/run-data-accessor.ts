@@ -1,6 +1,6 @@
+import { Node } from '..';
 import { InjectableId } from '../../injectables';
 import { DataAccessor, throwNewError } from '../../kernel';
-import { Node } from '..';
 import { fnArgumentsNames } from '../../shared';
 import { translateInjectables } from './injectables';
 

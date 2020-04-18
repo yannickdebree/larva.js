@@ -2,6 +2,8 @@ import { Node } from '..';
 import { Component } from '../../components';
 import { Injectable, InjectableDictionnay, InjectableId } from '../../injectables';
 import { Dependency, throwNewError } from '../../kernel';
+import { output } from './output';
+import { input } from './input';
 
 export function transferInjectablesToChildComponents(node: Node): void {
   (node.__property('components') as Array<Component>).forEach(function(component: Component): void {
@@ -15,18 +17,24 @@ export function transferInjectablesToChildComponents(node: Node): void {
 
 export function translateInjectables(node: Node, injectablesIds: Array<InjectableId>): Dependency[] {
   return injectablesIds.map(function(injectableId: string) {
-    const injectable: Injectable = node.__property('injectableDictionnay')[injectableId];
+    if (injectableId === '$input') {
+      return input();
+    } else if (injectableId === '$output') {
+      return output();
+    } else {
+      const injectable: Injectable = node.__property('injectableDictionnay')[injectableId];
 
-    if (!injectable) {
-      throwNewError(`"${injectableId}" is not declared as injectable in the "${node.__property('tag')}" node.`);
+      if (!injectable) {
+        throwNewError(`"${injectableId}" is not declared as injectable in the "${node.__property('tag')}" node.`);
+      }
+
+      const dependencies = new Array<Dependency>();
+
+      if (injectable.injectablesIds().length) {
+        dependencies.push(...translateInjectables(node, injectable.injectablesIds()));
+      }
+
+      return injectable.dataAccessor()(...dependencies);
     }
-
-    const dependencies = new Array<Dependency>();
-
-    if (injectable.injectablesIds().length) {
-      dependencies.push(...translateInjectables(node, injectable.injectablesIds()));
-    }
-
-    return injectable.dataAccessor()(...dependencies);
   });
 }

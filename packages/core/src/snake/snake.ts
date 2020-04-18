@@ -1,5 +1,5 @@
 import { DataAccessor, throwNewError } from '../kernel';
-import { createNode } from '../nodes';
+import { createNode, Output } from '../nodes';
 import { tryAndCatchOrReturn } from '../shared';
 import { Snake } from './types';
 
