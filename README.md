@@ -1,4 +1,4 @@
-<h1>Larva.js</h1>
+#Larva.js
 
 <img height="100px" src="./docs/larva.js-logo.png">
 
@@ -6,7 +6,7 @@ A(n other...) framework to develop web applications.
 
 ## Philosophy
 
-[Oriented-object programming](https://en.wikipedia.org/wiki/Object-oriented_programming) has probably becoming the **_de facto_** lead of software building. It composed for instance the most famous javascript frameworks ([React](https://reactjs.org), [Vue.js](https://vuejs.org/) and [Angular](https://angular.io)). However, the choice of the paradigm has becomed limited for developers who don't always want to use OOP, for technical or personal reasons. So the aim of Larva.js is to give them the possibility to choose the [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) paradigm to build web applications and use therefore the several FP advantages.
+[Oriented-object programming](https://en.wikipedia.org/wiki/Object-oriented_programming) has probably becomed the **_de facto_** lead of software building. It is composing for instance the most famous javascript frameworks ([React](https://reactjs.org), [Vue.js](https://vuejs.org/) and [Angular](https://angular.io)). However, the choice of the paradigm has become limited for developers who don't always want to use OOP, for technical or personal reasons. So Larva.js aims at giving them the possibility to choose the [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) paradigm to build web applications and use therefore the several FP advantages.
 
 ## Yarn (or NPM)
 
