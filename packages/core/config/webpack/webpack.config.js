@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../src/global.ts'),
+  entry: path.resolve(__dirname, '../../src/global.ts'),
   module: {
     rules: [
       {
@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     filename: 'core.min.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../../dist')
   },
   resolve: {
     extensions: ['.ts']

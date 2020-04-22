@@ -11,8 +11,8 @@
     "test": "mocha -r ts-node/register packages/**/*.spec.ts",
     "build": "yarn run build:core && yarn build:cli",
     "build:watch": "concurrently \"yarn run build:core:watch\" \"yarn build:cli:watch\"",
-    "build:core": "tsc --build packages/core/tsconfig.json && webpack --config packages/core/webpack/webpack.prod.config.js",
-    "build:core:watch": "concurrently \"tsc --build packages/core/tsconfig.json --watch\" \"webpack --config packages/core/webpack/webpack.dev.config.js\"",
+    "build:core": "tsc --build packages/core/tsconfig.json && webpack --config packages/core/config/webpack/webpack.prod.config.js",
+    "build:core:watch": "concurrently \"tsc --build packages/core/tsconfig.json --watch\" \"webpack --config packages/core/config/webpack/webpack.dev.config.js\"",
     "prebuild:cli": "cd packages/cli && yarn",
     "build:cli": "tsc --build packages/cli/tsconfig.json",
     "build:cli:watch": "yarn build:cli -- --watch"

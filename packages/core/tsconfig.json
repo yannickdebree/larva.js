@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
     "module": "CommonJS",
     "noImplicitAny": false,
-    "outDir": "./lib",
+    "outDir": "lib",
     "sourceMap": false,
     "strict": false,
     "strictFunctionTypes": false,
