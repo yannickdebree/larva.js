@@ -4,6 +4,11 @@
   "repository": "https://github.com/yannickdebree/larva.js",
   "license": "MIT",
   "private": true,
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "scripts": {
     "postinstall": "yarn run build",
     "format": "prettier --write \"**/*.ts\"",
@@ -18,9 +23,12 @@
     "build:cli:watch": "yarn build:cli -- --watch"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@types/mocha": "^7.0.2",
     "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
+    "husky": "^4.2.5",
     "mocha": "^7.1.1",
     "prettier": "^1.19.1",
     "ts-loader": "^7.0.0",
